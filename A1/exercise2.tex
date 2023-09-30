@@ -1,0 +1,112 @@
+\documentclass{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsfonts,amssymb}
+\begin{document}
+\begin{titlepage}
+	\setlength{\parindent}{0pt}
+	\large
+
+\vspace*{-2cm}
+
+
+University of Waterloo \par
+CS 480 \par
+\vspace{0.05cm}
+r2knowle: 2023-09-20
+\vspace{0.2cm}
+
+{\huge Exercise \# 2 \par}
+\hrule
+
+\vspace{0.5cm}
+\textbf{Q1)} To begin we are given the equation for ridge regression. We will expand out the L2 norms of this expression to help simplify
+\begin{align*} 
+&= \displaystyle \min_{w \in \mathbb{R}^d, b \in \mathbb{R}} \frac{1}{2n}||Xw + b1 - y||^2_2 + \lambda||w||^2_2 \\
+&= \displaystyle \min_{w \in \mathbb{R}^d, b \in \mathbb{R}} 
+\frac{1}{2n} \left( (Xw + b1 - y)^T(Xw + b1 - y) \right) + \lambda \left( w^Tw \right) \\
+&= \displaystyle \min_{w \in \mathbb{R}^d, b \in \mathbb{R}} 
+\frac{1}{2n} \left( (X^Tw^T + b^T1^T - y^T)(Xw + b1 - y) \right) + \lambda \left( w^Tw \right) \\
+&= \displaystyle \min_{w \in \mathbb{R}^d, b \in \mathbb{R}} 
+\frac{1}{2n} \left( (X^Tw^TXw + X^Tw^Tb - X^Tw^Ty +b^TXw+ b^Tb -b^Ty -y^TXw -y^Tb + y^Ty \right) + \lambda \left( w^Tw \right) \\
+&= \displaystyle \min_{w \in \mathbb{R}^d, b \in \mathbb{R}} 
+\frac{1}{2n} \left( X^Tw^TXw + X^Tw^Tb - X^Tw^Ty +b^TXw+ b^Tb -b^Ty -y^TXw -y^Tb + y^Ty + 2n\lambda w^Tw \right)
+\end{align*}
+From here we will split the elements into a matrix with 2 elements:
+\begin{align*} 
+&= \displaystyle \min_{w \in \mathbb{R}^d, b \in \mathbb{R}} \frac{1}{2n} \left(
+\begin{bmatrix}
+X^Tw^TXw + X^Tw^Tb - X^Tw^Ty +b^TXw+ b^Tb -b^Ty -y^TXw -y^Tb + y^Ty\\
+2n\lambda w^Tw 
+\end{bmatrix} \begin{bmatrix}
+1\\
+1
+\end{bmatrix} \right)  \\
+&= \displaystyle \min_{w \in \mathbb{R}^d, b \in \mathbb{R}} \frac{1}{2n} \left(
+\begin{bmatrix}
+X^Tw^T + b^T1^T - y^T\\
+\sqrt{2n\lambda} w^T
+\end{bmatrix}
+\begin{bmatrix}
+Xw + b1 - y\\
+\sqrt{2n\lambda} w 
+\end{bmatrix} \right)  \\
+&= \displaystyle \min_{w \in \mathbb{R}^d, b \in \mathbb{R}} \frac{1}{2n} \left(
+\begin{bmatrix}
+Xw + b1 - y\\
+\sqrt{2n\lambda} w
+\end{bmatrix}^T
+\begin{bmatrix}
+Xw + b1 - y\\
+\sqrt{2n\lambda} w 
+\end{bmatrix} \right)  \\
+&= \displaystyle \min_{w \in \mathbb{R}^d, b \in \mathbb{R}} \frac{1}{2n} 
+\left\vert \left\vert \begin{bmatrix}
+Xw + b1 - y\\
+\sqrt{2n\lambda} w
+\end{bmatrix} \right\vert \right\vert^2_2  \\
+&= \displaystyle \min_{w \in \mathbb{R}^d, b \in \mathbb{R}} \frac{1}{2n} 
+\left\vert \left\vert \begin{bmatrix}
+Xw + b1\\
+\sqrt{2n\lambda} w
+\end{bmatrix} - \begin{bmatrix}
+y \\
+0_d
+\end{bmatrix} \right\vert \right\vert^2_2  \\
+&= \displaystyle \min_{w \in \mathbb{R}^d, b \in \mathbb{R}} \frac{1}{2n} 
+\left\vert \left\vert \begin{bmatrix}
+X  & 1_n\\
+\sqrt{2n\lambda} & 0_d
+\end{bmatrix}\begin{bmatrix}
+w \\
+b
+\end{bmatrix} - \begin{bmatrix}
+y \\
+0_d
+\end{bmatrix} \right\vert \right\vert^2_2  
+\end{align*}
+Thus showing how we can transform the original  equation into what was required. \\\\\\
+\textbf{Q2)} We are now asked to calculate the derivative of the previous equation. Note that we can drop the minimum as it will have no impact on the derivative. We thus begin with the following equation:
+\[ \frac{1}{2n} \left( X^Tw^TXw + X^Tw^Tb - X^Tw^Ty +b^TXw+ b^Tb -b^Ty -y^TXw -y^Tb + y^Ty + 2n\lambda w^Tw \right) \]
+We will then expand it out further to get:
+\[ \frac{X^Tw^TXw}{2n} + \frac{X^Tw^Tb}{2n} - \frac{X^Tw^Ty}{2n} +  \frac{b^TXw}{2n} + \frac{b^Tb}{2n} - \frac{b^Ty}{2n} -  \frac{y^TXw}{2n} - \frac{y^Tb}{2n} + \frac{y^Ty}{2n} + \lambda w^Tw \]
+To answer the first part of this question we will use this equation to calculate the derivative w.r.t $w$:
+\begin{align*} 
+\frac{\delta}{\delta w} &=  \left( \frac{X^Tw^TXw}{2n} + \frac{X^Tw^Tb}{2n} - \frac{X^Tw^Ty}{2n} +  \frac{b^TXw}{2n} + \frac{b^Tb}{2n} - \frac{b^Ty}{2n} -  \frac{y^TXw}{2n} - \frac{y^Tb}{2n} + \frac{y^Ty}{2n} + \lambda w^Tw \right)' \\
+&= \left( \frac{X^Tw^TXw}{2n} \right)' + \left( \frac{X^Tw^Tb1}{2n} \right)' -\left( \frac{X^Tw^Ty}{2n} \right)' + \left( \frac{b^T1^TXw}{2n} \right)' - \left( \frac{y^TXw}{2n} \right)' + \left( \lambda w^Tw \right)' \\
+&= \left( \frac{2X^TXw}{2n} \right) + \left( \frac{X^Tb1}{2n} \right) -\left( \frac{X^Ty}{2n} \right) + \left( \frac{b^T1^TX}{2n} \right) - \left( \frac{y^TX}{2n} \right) + \left( 2\lambda w \right) \\
+&= \frac{X^TXw}{n} + \left( \frac{X^Tb1}{2n} + \frac{b^T1^TX}{2n} \right) - \left( \frac{X^Ty}{2n} + \frac{y^TX}{2n} \right) +2\lambda w \\
+&= \frac{X^TXw}{n} + \frac{X^Tb1}{n} - \frac{X^Ty}{n} +2\lambda w \\
+&= \frac{1}{n}X^T \left(Xw + b1 - y  \right)+ 2\lambda w
+\end{align*}
+Thus providing the derivative of w as required. We will now calculate the derivative w.r.t $b$:
+\begin{align*} 
+\frac{\delta}{\delta b} &=  \left( \frac{X^Tw^TXw}{2n} + \frac{X^Tw^Tb}{2n} - \frac{X^Tw^Ty}{2n} +  \frac{b^TXw}{2n} + \frac{b^Tb}{2n} - \frac{b^Ty}{2n} -  \frac{y^TXw}{2n} - \frac{y^Tb}{2n} + \frac{y^Ty}{2n} + \lambda w^Tw \right)' \\
+&=  \left( \frac{X^Tw^Tb1}{2n} \right)' + \left( \frac{b^T1^TXw}{2n} \right)' + \left( \frac{b^T1^Tb1}{2n} \right)' - \left( \frac{b^T1^Ty}{2n} \right)' - \left( \frac{y^Tb1}{2n} \right)' \\
+&=  \left( \frac{X^Tw^T1}{2n} \right) + \left( \frac{1^TXw}{2n} \right) + \left( \frac{1^Tb1}{n} \right) - \left( \frac{1^Ty}{2n} \right) - \left( \frac{y^T1}{2n} \right) \\
+&= \left( \frac{X^Tw^T1}{2n} + \frac{1^TXw}{2n} \right) - \left( \frac{1^Ty}{2n} + \frac{y^T1}{2n} \right) + \left( \frac{b1^T1}{n} \right) \\
+&= \left( \frac{1^TXw}{n} \right) - \left( \frac{1^Ty}{n} \right) + \left( \frac{b1^T1}{n} \right) \\
+&= \frac{1}{n}1^T \left(Xw + b1 - y  \right)
+\end{align*}
+Thus proving the derivative of b as needed. 
+\end{titlepage}
+\end{document}
