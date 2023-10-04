@@ -36,9 +36,9 @@ Perceptron::Perceptron( int d ) {
 
 int main() {
     Perceptron p = Perceptron(3);
-    std::vector<double> val1 = {0.1, 0.02, 0};
-    std::vector<double> val2 = {0, 0.1, 0};
-    std::vector<double> val3 = {-0.1, -0.02, 0.1};
+    std::vector<double> val1 = {0.1, -0.01, 0.01};
+    std::vector<double> val2 = {-0.01, 0.01, 0.1};
+    std::vector<double> val3 = {0.1, 0.01, 0.01};
 
     for (int i = 0; i < 20; i++) {
         p.classifyVal(1, &val1);

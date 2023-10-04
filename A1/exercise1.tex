@@ -188,7 +188,25 @@ Expanding this we get:
 Since we assumed that this is classifies any $a_n$ correctly for any $n \equiv 0\text{  mod 3}$ this would imply that:
 \[ -0.02 \times \left \lfloor\frac{n}{3}\right \rfloor > 0 \]
 However this can only occur when n is negative. Which since the start of our sequence is at $a_0$ and n only increases means that we have a contradiction. Thus this version of perceptron will make an infinite number of mistakes. \\\\\\
-\textbf{Q2)} Pick infinitly small points? and infinitely large points will return to this later.  \\\\\\
-\textbf{Q3)} Will learn how to do in class on thursday
+\textbf{Q2)} To begin consider the following 2 points to maximize the marginal half space: 
+\begin{align*} 
+\text{p1} &= (1,1),1 \\
+\text{p2} &= (2,0),-1
+\end{align*}
+If we run perception on the first point, it will incorrectly classify it however after wards it will always correctly classify p1 and p2. w will be (1,1) and b will be 1. Note that the marginal half space is as large as possible  as p1 is barley classified and $w^Tp2 + b$ is maximized, as theres no other combination of w and b that classify p1 and provide a larger value. Note the margin between the two points is $> 1$. To minimize marginal half space consider the $\epsilon = 0.25$ and the points:
+\begin{align*} 
+\text{p1} &= (1,1),1 \\
+\text{p2} &= (10,9.99),-1
+\end{align*}
+If we run perception on the first point, it will incorrectly classify it however after wards it will always correctly classify p1 and p2. w will be (1,1) and b will be 1. Note that the margin for both values will be far below $\epsilon$, thus converging to an arbitrary small half space. Note the margin between the two points is $> 1$.
+\newpage
+
+\textbf{Q3)} We are given that SDG updates w using the learning rate $\eta$ and the loss function $Q_i(w)$:
+\[ w = w - \eta \Delta Q_i(w) \]
+if we set $\eta$ to be -1, we then get:
+\[ w = w + \Delta Q_i(w) \]
+Setting $Q_i = wx_iy_i$ and taking the derivative gives us:
+\[ w = w + x_iy_i \]
+which is the same as perceptron.
 \end{titlepage}
 \end{document}

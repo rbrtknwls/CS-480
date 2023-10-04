@@ -1,0 +1,96 @@
+\documentclass{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage{blkarray}
+\usepackage{multirow}
+\usepackage{float}
+
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\begin{document}
+\begin{titlepage}
+	\setlength{\parindent}{0pt}
+	\large
+
+\vspace*{-2cm}
+
+
+University of Waterloo \par
+CS 480 \par
+\vspace{0.05cm}
+r2knowle: 2023-09-20
+\vspace{0.2cm}
+
+{\huge Exercise \# 5 \par}
+\hrule
+
+\vspace{0.5cm}
+\textbf{Q1)} We are going to start with the following Poisson distribution:
+\[ Pr(Y_i=k|X_i) = \frac{\mu_i^k}{k!}\text{exp}(-\mu_i) \]
+We can then take the log of this to get:
+\begin{align*}
+L(\mu_i) &= \prod_{i=0}^{n} \frac{\mu_i^k}{k!}\text{exp}(-\mu_i) \\
+l(\mu_i) &= \log( \prod_{i=0}^{n} \frac{\mu_i^k}{k!}\text{exp}(-\mu_i)) \\
+&= \sum_{i=0}^{n}\log( \frac{\mu_i^k}{k!}\text{exp}(-\mu_i)) \\
+&= \sum_{i=0}^{n} \log(\mu_i^k) - \log(k!) -\mu_i \\
+&= \sum_{i=0}^{n} k\log(\mu_i) - \log(k!) -\mu_i 
+\end{align*}\\
+\textbf{Q2)} Parameter $pi$ represents the mean and also the probability of a given event in the Bernoulli distribution. Therefore $pi$ needs to be a number between 0 and 1. In order to accomplish this we do a logit transform to get:
+\[ \log \frac{p_i}{1-p_i} = w^Tx_i + b \] 
+However for $\mu_i$ we can have any possible value as its only the mean and not the probability, because the actual probability is bounded by the function given in (6) we can do a logit transform where we just take in the value. Thus we can the transform of:
+\[ \log \mu_i = w^Tx_i + b \]\\
+\textbf{Q3)} We would like to optimize and maximize the value of $\mu$, thus we can transform log likelihood:
+\begin{align*}
+max_{\mu} \left( l(\mu_i) \right) &= max_{\mu} \left( \sum_{i=0}^{n} k\log(\mu_i) - \log(k!) -\mu_i \right) \\
+& = max_{\mu} \left( \sum_{i=0}^{n} k(w^Tx_i+b) - log(k!) - e^{w^Tx_i+b} \right)
+\end{align*}\\
+Since k is a constant, we we now only have variables in terms of b and w we get:
+\[ max_{w,b} \left( l(w,b) \right) = max_{\mu} \left( \sum_{i=0}^{n} k(w^Tx_i+b) - e^{w^Tx_i+b} \right) \]
+
+\newpage
+
+\textbf{Q4)} To calculate the weight vector and b we will first calculate the gradients. To start we will take the gradient $w.r.t$ to $w$:
+\begin{align*}
+\frac{\delta}{\delta w} &= \sum_{i=0}^{n} (k(w^Tx_i+b) - e^{w^Tx_i+b})' \\
+&= \sum_{i=0}^{n} (kx_i - x_ie^{w^Tx_i}e^b) \\
+&= \sum_{i=0}^{n} kx_i - e^b \sum_{i=0}^{n} x_ie^{w^Tx_i} \\
+&= k\sum_{i=0}^{n} x_i - e^b \sum_{i=0}^{n} x_ie^{w^Tx_i} \\
+\end{align*}
+This gives us our value of the gradient we will then introduce a learning factor $\alpha$ and update w by:
+\[ w \mathrel{+}= \alpha\frac{\delta}{\delta w} \]\\
+Moving on to b, we will take the gradient  $w.r.t$ to $b$:
+\begin{align*}
+\frac{\delta}{\delta b} &= \sum_{i=0}^{n} (k(w^Tx_i+b) - e^{w^Tx_i+b})' \\
+&= \sum_{i=0}^{n} (k - e^{w^Tx_i}e^b) \\
+&= \sum_{i=0}^{n} k - e^b \sum_{i=0}^{n} e^{w^Tx_i} \\
+&= kn - e^b \sum_{i=0}^{n} e^{w^Tx_i} \\
+\end{align*}
+This gives us our value of the gradient we will then introduce a learning factor $\alpha$ and update b by:
+\[ b \mathrel{+}= \alpha\frac{\delta}{\delta b} \]
+
+\end{titlepage}
+\end{document}
