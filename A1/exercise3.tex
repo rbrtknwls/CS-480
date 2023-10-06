@@ -1,3 +1,56 @@
+\documentclass{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage{blkarray}
+\usepackage{multirow}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\begin{document}
+\begin{titlepage}
+	\setlength{\parindent}{0pt}
+	\large
+
+\vspace*{-2cm}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+University of Waterloo \par
+CS 480 \par
+\vspace{0.05cm}
+r2knowle: 2023-09-20
+\vspace{0.2cm}
+
+{\huge Exercise \# 3 \par}
+\hrule
+
+\vspace{0.5cm}
+\textbf{Q1)} To begin below is the code in python that was used to generate our results:
+
+\begin{lstlisting}
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -103,3 +156,71 @@ for i in range(0, 3):
     plt.title("Prediction Buckets for Dataset " + str(dataset[i]))
     plt.grid(True)
     plt.show()
+
+\end{lstlisting} 
+\newpage
+From this we get the following graphs and MSEs for the datasets:
+\begin{figure}[H]
+\begin{minipage}[c]{0.9\linewidth}
+\centering
+\includegraphics[scale=0.5]{3A.png}
+\end{minipage}
+\hfill
+\vspace{0.5cm}
+\begin{minipage}[c]{0.9\linewidth}
+\centering
+\begin{tabular}{ |c||c|c|c| } 
+\hline
+\text{ } & \text{Linear Regression} & \text{Ridge Regression} & \text{Lasso Regression}\\
+\hline
+\hline
+\text{Mean Squared Error} & 3.2474 & 2.7828 & 21.1351 \\
+\hline
+\end{tabular}
+\caption{Results for Dataset A}
+\end{minipage}%
+\hfill
+\vspace{0.5cm}
+\begin{minipage}[c]{0.9\linewidth}
+\centering
+\includegraphics[scale=0.5]{3B.png}
+\end{minipage}
+\hfill
+\vspace{0.5cm}
+\begin{minipage}[c]{0.9\linewidth}
+\centering
+\begin{tabular}{ |c||c|c|c| } 
+\hline
+\text{ } & \text{Linear Regression} & \text{Ridge Regression} & \text{Lasso Regression}\\
+\hline
+\hline
+\text{Mean Squared Error} & 2.7427 & 1.9097 & 5.5387 \\
+\hline
+\end{tabular}
+\caption{Results for Dataset B}
+\end{minipage}%
+\end{figure} 
+
+\begin{figure}[H]
+\begin{minipage}[c]{0.9\linewidth}
+\centering
+\includegraphics[scale=0.5]{3C.png}
+\end{minipage}
+\hfill
+\vspace{0.5cm}
+\begin{minipage}[c]{0.9\linewidth}
+\centering
+\begin{tabular}{ |c||c|c|c| } 
+\hline
+\text{ } & \text{Linear Regression} & \text{Ridge Regression} & \text{Lasso Regression}\\
+\hline
+\hline
+\text{Mean Squared Error} & 502.35 & 514.83 & 1223.6 \\
+\hline
+\end{tabular}
+\caption{Results for Dataset A}
+\end{minipage}%
+\end{figure}
+From this it is clear that Lasso Regression preforms by far the worst on all the datasets, even when its hyper paramaters where tuned. Linear regression seems to do better then ridge regression on dataset C possible due to the very low sample data. However ridge regression does the best on the other two datasets with the lowest MSEs out of all the different regression methods.
+\end{titlepage}
+\end{document}
