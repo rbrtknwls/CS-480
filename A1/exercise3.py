@@ -2,7 +2,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from sklearn.linear_model import Ridge, Lasso, LinearRegression
-from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
 
 # Estimates the best hyperparameter for ridge for a given dataset
@@ -78,7 +77,7 @@ for i in range(0, 3):
     numberOfBuckets = 50
 
     # Create our Buckets
-    divisFactor = int(np.abs(maxCoef) + np.abs(minCoef)) / numberOfBuckets
+    divisFactor = (np.abs(maxCoef) + np.abs(minCoef)) / numberOfBuckets
 
 
     linPred = lin.predict(X_test)
@@ -94,6 +93,7 @@ for i in range(0, 3):
     for x in range(0, numberOfBuckets):
         binsToSort.append(minCoef + x * divisFactor)
     print(binsToSort)
+    print(lin.coef_)
     plt.hist(lin.coef_.flatten(), bins=binsToSort, alpha=0.5, color="r", label="Linear Regression")
     plt.hist(rid.coef_.flatten(), bins=binsToSort, alpha=0.5, color="g", label="Ridge Regression (h =" + str(BestRidge[i]) + ")")
     plt.hist(las.coef_.flatten(), bins=binsToSort, alpha=0.5, color="b", label="Lasso Regression (h =" + str(BestLasso[i]) + ")")

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.4) (preloaded format=pdflatex 2023.9.12)  6 OCT 2023 11:32
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.4) (preloaded format=pdflatex 2023.9.12)  6 OCT 2023 12:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -353,15 +353,15 @@ File: lstlang1.sty 2023/02/27 1.9 listings language file
 <3A.png, id=13, 642.4pt x 481.8pt>
 File: 3A.png Graphic file (type png)
 <use 3A.png>
-Package pdftex.def Info: 3A.png  used on input line 166.
+Package pdftex.def Info: 3A.png  used on input line 165.
 (pdftex.def)             Requested size: 321.19922pt x 240.8994pt.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 167
+LaTeX Font Info:    Trying to load font information for U+msa on input line 166
 .
 
 (C:\Users\robde\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 167
+LaTeX Font Info:    Trying to load font information for U+msb on input line 166
 .
 
 (C:\Users\robde\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
@@ -370,21 +370,21 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 <3B.png, id=14, 642.4pt x 481.8pt>
 File: 3B.png Graphic file (type png)
 <use 3B.png>
-Package pdftex.def Info: 3B.png  used on input line 186.
+Package pdftex.def Info: 3B.png  used on input line 185.
 (pdftex.def)             Requested size: 321.19922pt x 240.8994pt.
 <3C.png, id=15, 642.4pt x 481.8pt>
 File: 3C.png Graphic file (type png)
 <use 3C.png>
-Package pdftex.def Info: 3C.png  used on input line 207.
+Package pdftex.def Info: 3C.png  used on input line 206.
 (pdftex.def)             Requested size: 321.19922pt x 240.8994pt.
 
 [3 <./3A.png (PNG copy)> <./3B.png (PNG copy)>] [4 <./3C.png (PNG copy)>]
 (exercise3.aux) ) 
 Here is how much of TeX's memory you used:
- 7003 strings out of 476331
- 109585 string characters out of 5787765
+ 7001 strings out of 476331
+ 109544 string characters out of 5787765
  1965660 words of memory out of 5000000
- 27384 multiletter control sequences out of 15000+600000
+ 27382 multiletter control sequences out of 15000+600000
  515356 words of font info for 45 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  69i,12n,79p,448b,1937s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -394,7 +394,7 @@ ype1/public/amsfonts/cm/cmr10.pfb><C:/Users/robde/AppData/Local/Programs/MiKTeX
 /fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/robde/AppData/Local/Program
 s/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/robde/AppData/Local
 /Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on exercise3.pdf (4 pages, 166823 bytes).
+Output written on exercise3.pdf (4 pages, 170389 bytes).
 PDF statistics:
  43 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
