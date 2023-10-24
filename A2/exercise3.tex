@@ -1,0 +1,127 @@
+\documentclass{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage{blkarray}
+\usepackage{multirow}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\begin{document}
+\begin{titlepage}
+	\setlength{\parindent}{0pt}
+	\large
+
+\vspace*{-2cm}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+University of Waterloo \par
+CS 480 \par
+\vspace{0.05cm}
+r2knowle: 2023-10-22
+\vspace{0.2cm}
+
+{\huge Exercise \# 3 \par}
+\hrule
+
+\vspace{0.5cm}
+\textbf{Q1)} To begin we are given the kernel function:
+\[ k(x,y) = e^{-\alpha(x-y)^2} \]
+To find the feature map we will start by converting it into its Taylor series approximation: 
+\begin{align*}
+e^{-\alpha(x-y)^2} &= \sum^\infty_{k=0}\frac{-\alpha^k(x-y)^2k}{k!} \\
+&= \sum^\infty_{k=0}\frac{-\alpha^k}{k!}(x-y)^2k \\
+&= \sum^\infty_{k=0}\frac{-\alpha^k}{k!}(x^2-2xy+y^2)^k \\
+&= \sum^\infty_{k=0}(\frac{(-\alpha x^2)^k}{k!} + \frac{(-2\alpha xy)^k}{k!} + \frac{(-\alpha y^2)^k}{k!} ) \\
+&= \sum^\infty_{k=0}(\frac{(-\alpha x^2)^k}{k!} + \frac{(\sqrt{-2\alpha})^kx^k}{\sqrt{k!}}\frac{(\sqrt{-2\alpha})^ky^k}{\sqrt{k!}} + \frac{(-\alpha y^2)^k}{k!} ) \\ 
+<\phi(x), \phi(y)>&= e^{(-\alpha x^2)} \dot e^{(-\alpha x^2)} \sum^\infty_{k=0}\frac{(\sqrt{-2\alpha})^kx^k}{\sqrt{k!}}\frac{(\sqrt{-2\alpha})^ky^k}{\sqrt{k!}}
+\end{align*}
+Thus we get the feature mappings of:
+\[ \phi(x)  = e^{(-\alpha x^2)} \left[1, \frac{\sqrt{-2\alpha}x}{\sqrt{1}}, \frac{\sqrt{-2\alpha}x^2}{\sqrt{2}}, ...  \right]^t \] 
+\[ \phi(y)  = e^{(-\alpha y^2)} \left[1, \frac{\sqrt{-2\alpha}y}{\sqrt{1}}, \frac{\sqrt{-2\alpha}y^2}{\sqrt{2}}, ...  \right] \] 
+We would want to use the primal in SVM, as the feature space for the kernel is infinite whereas the primal it is not. \\\\
+\textbf{Q2)} Since $x,y \in (-1, 1)$, it follows that $|xy| < 1$ Because of this we can use the taylor series expansions to get that:
+\begin{align*}
+\frac{1}{1-xy} = \sum^\infty_{k=0}(xy)^k
+\end{align*}
+This will give us the feature maps of:
+\[ \phi(x) = \left[1, x, x^2, x^3, ... \right]^T \]
+\[ \phi(y) = \left[1, y, y^2, y^3, ... \right] \]
+\newpage
+\textbf{Q3)} This is not a valid kernel, consider x = 12 and y = 1. Thus we get that:
+\[ M = \begin{bmatrix}
+\log(145) & \log(13) \\
+\log(13) & \log(2)
+\end{bmatrix} \]
+If we then consider the vector $v = \begin{bmatrix} 1 \\
+-6
+\end{bmatrix}$ when we multiply we will get:
+\begin{align*}
+\begin{bmatrix} 1 &
+-6
+\end{bmatrix} \begin{bmatrix}
+\log(145) & \log(13) \\
+\log(13) & \log(2)
+\end{bmatrix} \begin{bmatrix} 1 \\
+-6
+\end{bmatrix} &= \begin{bmatrix} \log(145) - 6\log(13) &
+\log(13) - 6\log(2)
+\end{bmatrix} \begin{bmatrix} 1 \\
+-6
+\end{bmatrix} \\
+&= \log(145)+36\log(2)-12\log(13) \\
+&\approx -0.37
+< 0
+\end{align*}
+Thus since its not positive semi-definite it cant be a valid kernel.\\\\
+\textbf{Q4)} This is not a valid kernel, consider x = 1 and y = 2. Thus we get that:
+\[ M = \begin{bmatrix}
+\cos(2) & \cos(3) \\
+\cos(3) & \cos(4)
+\end{bmatrix} \]
+If we then consider the vector $v = \begin{bmatrix} 1 \\
+1
+\end{bmatrix}$ when we multiply we will get:
+\begin{align*}
+\begin{bmatrix} 1 &
+1
+\end{bmatrix} \begin{bmatrix}
+\cos(2) & \cos(3) \\
+\cos(3) & \cos(4)
+\end{bmatrix} \begin{bmatrix} 1 \\
+1
+\end{bmatrix} &= \begin{bmatrix} \cos(2) + \cos(3) &
+\cos(3) + \cos(4)
+\end{bmatrix} \begin{bmatrix} 1 \\
+1
+\end{bmatrix} \\
+&= \cos(2) + 2\cos(3) + \cos(4) \\
+&\approx -3.05
+< 0
+\end{align*}
+Thus since its not positive semi definite it cant be a valid kernel.
+\end{titlepage}
+\end{document}
