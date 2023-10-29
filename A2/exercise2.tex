@@ -1,0 +1,118 @@
+\documentclass{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage{blkarray}
+\usepackage{multirow}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\begin{document}
+\begin{titlepage}
+	\setlength{\parindent}{0pt}
+	\large
+
+\vspace*{-2cm}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+University of Waterloo \par
+CS 480 \par
+\vspace{0.05cm}
+r2knowle: 2023-10-22
+\vspace{0.2cm}
+
+{\huge Exercise \# 2 \par}
+\hrule
+
+\vspace{0.5cm}
+\textbf{Q1)} To begin we are given that for any $x_i \in \mathbb{R}^d$, $y_i \in \mathbb{R}$ that the error term is:
+\[ C \sum^n_{i=1} \max\{|y_i-(w^Tx_i+b)|-\epsilon, 0 \} \]
+We will then introduce a term $y_i$ such that $y_i >= \max\{|y_i-(w^Tx_i+b)|-\epsilon, 0 \}$. Plugging this into our original equation we given in the question we get:
+\[ \max_{\alpha, \beta} \min_{w,b}\frac{1}{2}||w||^2_2 + \sum^n_{i=1} (a_iy_i + a_i(|y_i-(w^Tx_i+b)|-\epsilon)-\beta y_i) \]
+Before we take the derivative in respect to b, and w. We will start by considering both sides of the absolute value. Starting with $y_i-(w^Tx_i+b)-\epsilon > 0$ we get:
+\[ \frac{d}{db} = - \sum_{i=1}^na_i = 0 \]
+\[ \frac{d}{dw} = w - \sum_{i=1}^na_ix_i = 0 \]
+\[ \frac{d}{dy_i} = C + a_i + \beta_i = 0 \]
+Now since $w = \sum_{i=1}^na_ix_i$ we can get $||w||^2_2 = \sum^n_{i=0}\sum^n_{j=1}a_ia_j<x_i, x_j>$ plugging this back in to our equation gives us get: \\
+\begin{align*}
+&= \max_{\alpha, \beta} \min_{w,b}\frac{1}{2}||w||^2_2 + \sum^n_{i=1} a_i(y_i-(w^Tx_i+b))\\
+&= \max_{\alpha, \beta} \frac{1}{2}\sum^n_{i=0}\sum^n_{j=1}a_ia_j<x_i, x_j> + \sum^n_{i=1} a_i(y_i-(w^Tx_i+b)) \\
+&= \max_{\alpha, \beta} \frac{1}{2}\sum^n_{i=0}\sum^n_{j=1}a_ia_j<x_i, x_j> + \sum^n_{i=1}a_iy_i - \sum^n_{j=1}\sum^n_{i=1}a_ia_j<x_i, x_j>- \sum^n_{i=1}b\alpha_i \\
+&= \max_{\alpha, \beta} \sum^n_{i=1}a_iy_i -\frac{1}{2} \sum^n_{j=1}\sum^n_{i=1}a_ia_j<x_i, x_j>- \sum^n_{i=1}b\alpha_i \\
+&= \max_{\alpha, \beta} \sum^n_{i=1}a_iy_i -\frac{1}{2} \sum^n_{j=1}\sum^n_{i=1}a_ia_j<x_i, x_j> \text{  } s.t \text{  } C = \alpha + \beta, \sum_{i=1}^na_i = 0
+\end{align*}
+\newpage
+On the other hand if $-y_i+(w^Tx_i+b)+\epsilon > 0$:
+\[ \frac{d}{db} = \sum_{i=1}^na_i = 0 \]
+\[ \frac{d}{dw} = w + \sum_{i=1}^na_ix_i = 0 \]
+\[ \frac{d}{dy_i} = C + a_i + \beta_i = 0 \]
+Now since $w = -\sum_{i=1}^na_ix_i$ we can get $||w||^2_2 = \sum^n_{i=0}\sum^n_{j=1}a_ia_j<x_i, x_j>$ plugging this back in to our equation gives us get: \\
+\begin{align*}
+&= \max_{\alpha, \beta} \min_{w,b}\frac{1}{2}||w||^2_2 + \sum^n_{i=1} (a_i(-y_i+(w^Tx_i+b))\\
+&= \max_{\alpha, \beta} \frac{1}{2}\sum^n_{i=0}\sum^n_{j=1}a_ia_j<x_i, x_j> + \sum^n_{i=1} a_i(-y_i+(w^Tx_i+b))) \\
+&= \max_{\alpha, \beta} \frac{1}{2}\sum^n_{i=0}\sum^n_{j=1}a_ia_j<x_i, x_j> - \sum^n_{i=1}a_iy_i - \sum^n_{j=1}\sum^n_{i=1}a_ia_j<x_i, x_j> + \sum^n_{i=1}b\alpha_i \\
+&= \max_{\alpha, \beta} -\sum^n_{i=1}a_iy_i -\frac{1}{2} \sum^n_{j=1}\sum^n_{i=1}a_ia_j<x_i, x_j> + \sum^n_{i=1}b\alpha_i \\
+&= \max_{\alpha, \beta} - \sum^n_{i=1}a_iy_i -\frac{1}{2} \sum^n_{j=1}\sum^n_{i=1}a_ia_j<x_i, x_j> \text{  } s.t \text{  } C = \alpha + \beta, \sum_{i=1}^na_i = 0
+\end{align*}
+Thus giving us the Lagrangian Dual for both sides of the absolute value.
+\newpage
+\textbf{Q2)} To begin we know we are given:
+\[C \sum^n_{i=1}\max\{ |y_i - (w^Tx_i+b)|-\epsilon, 0 \} \]
+this can split the max equation into two separate forms, either its 0 or:
+\[ |y_i - (w^Tx_i + b)| - e \]
+This in and of itself has two forms its either $y_i - (w^Tx_i + b) - e$ or $-y_i + (w^Tx_i + b) - e$. Now we will state that:
+\[ y_i - (w^Tx_i + b) - e < -y_i + (w^Tx_i + b) - e \]
+It then would follow that $y_i - (w^Tx_i + b)$ would be less then 0, and thus we only need to include $-y_i + (w^Tx_i + b)$ when looking at the gradient. Thus if we take the gradients we get:
+\[ \frac{d}{db} = C \]
+\[ \frac{d}{dw} = C\sum_{i=1}^nx_i \]
+In the cases where $-y_i + (w^Tx_i + b)$  would be less then 0, and thus we only need to include $y_i - (w^Tx_i + b)$ when looking at the gradient. Thus if we take the gradients we get:
+\[ \frac{d}{db} = -C \]
+\[ \frac{d}{dw} = -C\sum_{i=1}^nx_i \]
+And so if we combine all three we get that the sub gradient for w will be:
+\[ \frac{d}{dw} = \begin{cases} 
+      -C\sum_{i=1}^nx_i & y_i - (w^Tx_i + b) > \epsilon \\
+      0 & |y_i - (w^Tx_i + b)| < \epsilon \\
+      C\sum_{i=1}^nx_i & -y_i + (w^Tx_i + b) > \epsilon
+   \end{cases}
+\]
+And for b we get:
+\[ \frac{d}{db} = \begin{cases} 
+      -nC & y_i - (w^Tx_i + b) > \epsilon \\
+      0 & |y_i - (w^Tx_i + b)| < \epsilon \\
+      nC & -y_i + (w^Tx_i + b) > \epsilon
+   \end{cases}
+\]
+\textbf{Q3)} We are given the equation:
+\[p^{\eta}(w) = \min_z \frac{1}{2\eta}||z-w||^2_2 + \frac{1}{2}||z||^2_2 \]
+This will be minimized when z is equal to the previous iteration for w. in other words we will have that:
+\[ w^(t+1) = w - \eta z \]
+\newpage
+\textbf{Q3)} After running gradient descent (included as python file) we get the following training error, training loss and test error:
+\[ \text{Training Error} = 0.7702098196531493 \]
+\[ \text{Test Error} = 0.5621596024609502 \]
+\[ \text{Loss} = 0.8432394036914252 \]
+\end{titlepage}
+\end{document}
