@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.4) (preloaded format=pdflatex 2023.9.12)  29 OCT 2023 00:08
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.4) (preloaded format=pdflatex 2023.9.12)  29 OCT 2023 02:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -721,38 +721,23 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 33.
 (C:\Users\robde\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Underfull \hbox (badness 10000) in paragraph at lines 33--35
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 36--40
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 41--44
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 45--50
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 51--55
-
- []
-
-
-Overfull \hbox (23.20549pt too wide) in paragraph at lines 58--59
+Overfull \hbox (11.20613pt too wide) in paragraph at lines 50--51
 [][] 
  []
 
 
-Overfull \hbox (23.20549pt too wide) in paragraph at lines 72--73
+Overfull \hbox (11.20613pt too wide) in paragraph at lines 74--75
 [][] 
+ []
+
+
+Overfull \hbox (11.20613pt too wide) in paragraph at lines 92--93
+[][] 
+ []
+
+
+Overfull \hbox (11.20613pt too wide) in paragraph at lines 111--130
+[][]
  []
 
 [1
@@ -760,31 +745,32 @@ Overfull \hbox (23.20549pt too wide) in paragraph at lines 72--73
 {C:/Users/robde/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
 (formulaSheet.aux) ) 
 Here is how much of TeX's memory you used:
- 15497 strings out of 476331
- 317143 string characters out of 5787765
- 1861660 words of memory out of 5000000
- 35670 multiletter control sequences out of 15000+600000
+ 15493 strings out of 476331
+ 317039 string characters out of 5787765
+ 1878660 words of memory out of 5000000
+ 35666 multiletter control sequences out of 15000+600000
  515101 words of font info for 46 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 102i,12n,104p,436b,784s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 102i,14n,104p,436b,784s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/robde/AppData/Local/Programs/MiKTeX/fonts/type1/p
 ublic/amsfonts/cm/cmbx10.pfb><C:/Users/robde/AppData/Local/Programs/MiKTeX/font
 s/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/robde/AppData/Local/Programs/Mi
 KTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/robde/AppData/Local/Pr
-ograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/robde/AppData
-/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/robde
-/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Use
-rs/robde/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb
-><C:/Users/robde/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/c
-mr5.pfb><C:/Users/robde/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
-ts/cm/cmr7.pfb><C:/Users/robde/AppData/Local/Programs/MiKTeX/fonts/type1/public
-/amsfonts/cm/cmsy10.pfb><C:/Users/robde/AppData/Local/Programs/MiKTeX/fonts/typ
-e1/public/amsfonts/cm/cmsy5.pfb><C:/Users/robde/AppData/Local/Programs/MiKTeX/f
-onts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/robde/AppData/Local/Programs/
-MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on formulaSheet.pdf (1 page, 142248 bytes).
+ograms/MiKTeX/fonts/type1/public/amsfonts/cmextra/cmex7.pfb><C:/Users/robde/App
+Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/
+robde/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C
+:/Users/robde/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi
+7.pfb><C:/Users/robde/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts
+/cm/cmr10.pfb><C:/Users/robde/AppData/Local/Programs/MiKTeX/fonts/type1/public/
+amsfonts/cm/cmr5.pfb><C:/Users/robde/AppData/Local/Programs/MiKTeX/fonts/type1/
+public/amsfonts/cm/cmr7.pfb><C:/Users/robde/AppData/Local/Programs/MiKTeX/fonts
+/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/robde/AppData/Local/Programs/MiK
+TeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/robde/AppData/Local/Prog
+rams/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/robde/AppData/Lo
+cal/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on formulaSheet.pdf (1 page, 166171 bytes).
 PDF statistics:
- 74 PDF objects out of 1000 (max. 8388607)
+ 79 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
