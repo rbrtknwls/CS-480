@@ -128,15 +128,43 @@ $    \end{minipage}
 \node [mybox] (box){%
     \begin{minipage}{0.45\textwidth}
 		Data does not need to be linearlly seperable.\\
-		
-		\textbf{Optimize:} $min_{w,b}\frac{1}{2}||w||_2^2 \text{ } s.t \text{ } y\hat{y}\geq 1$ \\
-		\textbf{Primal:} $min_{w,b}\frac{1}{2}||w||_2^2 \text{ } s.t \text{ } y_i(\langle w, x_i \rangle + b )\geq 1$ \\
-		\textbf{Duel:} $min_{a}\frac{1}{2}\sum_i\sum_j a_ia_jy_iy_j \langle x_i, x_j \rangle \text{ } s.t \text{ } \sum a_iy_i = 0$ \\
-		\textbf{Complimentary Slackness:} $a_i(y_i(\langle w, x_i \rangle +b) -1) = 0, \forall i$\\
-		\textbf{Support Vector:} if $a_i > 0$ then w=$\sum a_iy_ix_i$
+	\textbf{Soft-Margin:} $\min_{w,b} \frac{1}{2}||w||_2^2 + C \sum_i \max(0, 1-y_i\hat{y_i})$\\
+	if $1-y_i\hat{y_i} \leq 0 \implies$ Correct side of margin.\\
+	if 0 $< 1-y_i\hat{y_i} \leq 1 \implies$ Correctly classified, inside  of margin. \\
+	if $y_i\hat{y_i} \leq 0 \implies$ incorrectly classified. \\
+	If C=0 ignore data, if C=$\infty$, hard-margin. \\
+	\textbf{Slack Variable:} define $\gamma_i$ such that $max(0,1-y_i\hat{y_i}) \leq \gamma_i$\\
+	\textbf{Split in Two:} $0 \leq \gamma_i$ and $1-y_i\hat{y_i} \leq \gamma_i$ \\
+	\textbf{Duel Solution:} Note $0 \leq \gamma_i$ and $1-y_i\hat{y_i} \leq \gamma_i$ implies:\\
+	\blank{0.5cm}=$ \max_{\alpha, \beta} min_{w,b,\gamma} \frac{1}{2} ||w||^2_2+\sum(C\gamma_i + \alpha(11-y_i\hat{y_i} - \gamma_i) - \beta_i\gamma_i)$
+	\blank{0.5cm}=$\min_\alpha \frac{1}{2}\sum_i\sum_j\alpha_i\alpha_jy_iy_j\langle x_i, x_j \rangle - \sum a_i$ s.t $\sum a_iy_i = 0$\\
+	if $a_i=0$ then $y_i$ = 0, point is classified correctly. \\
+	if $a_i>0$ and $y_i$ = 0, point is on margin. \\
+	if $a_i>0$ and $y_i >$  0, point is on within margin.\\
+	\textbf{Loss Function:} L = $ \frac{C}{n}\sum_i l_{w,b}(x_i,y_i) + \frac{1}{2}||w||^2_2$\\
+	\textbf{Gradient Descent}: $\frac{\delta L}{\delta w} = w + C/N\sum\ \delta_i$ \\
+	if $1-y_i\hat{y_i}\geq 0,$ then $\delta = -y_ix_i $ else $\delta = 0$
     \end{minipage}
 };
 \node[fancytitle, right=10pt] at (box.north west) {Soft-Margin SVM};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.45\textwidth}
+	Map data to new space where it is linearlly seperable.\\
+	\textbf{Padding Trick: }$\o(x) = [w,1]$ and $w = \langle x,p \rangle$\\
+	\textbf{New Classifier:} $\langle \o(x),w \rangle = \langle x,p \rangle +b > 0$\\
+	\textbf{Quadratic Feature:} $x^tQx + \sqrt{2}x^Tp + b$, wich gives us:\\
+	\blank{0.5cm} $\o(x) = [xx^t,\sqrt{2}x,1]$ and $w= [Q,p,b]$\\
+	With feature map $\o:\mathbb{R}^d \rightarrow \mathbb{R}^{d\times d +d + 1}$, time O(d) to O($d^2$)\\
+	This can take infinite time in high dimensions.
+	For the duel we only need to calculate dot product.\\
+	\textbf{Kernal:} k:$\mathbb{R}^d\times\mathbb{R}^d\rightarrow \mathbb{R}$ if k(x,x') = $\langle \o(x), \o(x') \rangle$\\
+	\textbf{Polynomial Kernel t:}
+    \end{minipage}
+};
+\node[fancytitle, right=10pt] at (box.north west) {Kernels};
 \end{tikzpicture}
 \end{multicols*}
 
