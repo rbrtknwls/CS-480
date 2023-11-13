@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.4) (preloaded format=pdflatex 2023.9.12)  29 OCT 2023 18:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.4) (preloaded format=pdflatex 2023.9.12)  30 OCT 2023 01:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -766,36 +766,177 @@ File: 2.png Graphic file (type png)
 <use 2.png>
 Package pdftex.def Info: 2.png  used on input line 245.
 (pdftex.def)             Requested size: 158.99522pt x 79.85895pt.
- [2 <./mlp.png> <./2.png>] (formulaSheet.aux) ) 
+<3.png, id=26, 592.01175pt x 154.77824pt>
+File: 3.png Graphic file (type png)
+<use 3.png>
+Package pdftex.def Info: 3.png  used on input line 254.
+(pdftex.def)             Requested size: 256.07768pt x 85.35974pt.
+<4.png, id=27, 582.37575pt x 233.673pt>
+File: 4.png Graphic file (type png)
+<use 4.png>
+Package pdftex.def Info: 4.png  used on input line 263.
+(pdftex.def)             Requested size: 256.08615pt x 71.12932pt.
+<5.png, id=28, 456.5055pt x 139.722pt>
+File: 5.png Graphic file (type png)
+<use 5.png>
+Package pdftex.def Info: 5.png  used on input line 273.
+(pdftex.def)             Requested size: 256.0732pt x 71.13148pt.
+<6.png, id=29, 434.8245pt x 158.39175pt>
+File: 6.png Graphic file (type png)
+<use 6.png>
+Package pdftex.def Info: 6.png  used on input line 282.
+(pdftex.def)             Requested size: 256.07977pt x 113.80995pt.
+<7.png, id=30, 467.94826pt x 155.3805pt>
+File: 7.png Graphic file (type png)
+<use 7.png>
+Package pdftex.def Info: 7.png  used on input line 291.
+(pdftex.def)             Requested size: 256.07994pt x 71.1321pt.
+<8.png, id=31, 513.117pt x 127.677pt>
+File: 8.png Graphic file (type png)
+<use 8.png>
+Package pdftex.def Info: 8.png  used on input line 300.
+(pdftex.def)             Requested size: 256.08026pt x 71.13431pt.
+<10.png, id=32, 371.58826pt x 97.5645pt>
+File: 10.png Graphic file (type png)
+<use 10.png>
+Package pdftex.def Info: 10.png  used on input line 309.
+(pdftex.def)             Requested size: 256.08998pt x 71.13214pt.
+<9.png, id=33, 246.9225pt x 154.77824pt>
+File: 9.png Graphic file (type png)
+<use 9.png>
+Package pdftex.def Info: 9.png  used on input line 318.
+(pdftex.def)             Requested size: 256.08875pt x 113.81377pt.
+<11.png, id=34, 371.58826pt x 169.8345pt>
+File: 11.png Graphic file (type png)
+<use 11.png>
+Package pdftex.def Info: 11.png  used on input line 327.
+(pdftex.def)             Requested size: 256.08998pt x 142.26868pt.
+ [2 <./mlp.png> <./2.png> <./3.png> <./4.png> <./5.png> <./6.png> <./7.png> <./
+8.png> <./10.png>]
+<12.png, id=47, 373.99725pt x 160.80075pt>
+File: 12.png Graphic file (type png)
+<use 12.png>
+Package pdftex.def Info: 12.png  used on input line 336.
+(pdftex.def)             Requested size: 256.08954pt x 113.81108pt.
+<13.png, id=48, 355.3275pt x 151.16475pt>
+File: 13.png Graphic file (type png)
+<use 13.png>
+Package pdftex.def Info: 13.png  used on input line 345.
+(pdftex.def)             Requested size: 256.07957pt x 113.80922pt.
+<14.png, id=49, 352.9185pt x 157.18726pt>
+File: 14.png Graphic file (type png)
+<use 14.png>
+Package pdftex.def Info: 14.png  used on input line 354.
+(pdftex.def)             Requested size: 256.08284pt x 142.2755pt.
+<15.png, id=50, 368.577pt x 142.73325pt>
+File: 15.png Graphic file (type png)
+<use 15.png>
+Package pdftex.def Info: 15.png  used on input line 363.
+(pdftex.def)             Requested size: 256.0787pt x 113.8143pt.
+<16.png, id=51, 296.307pt x 142.73325pt>
+File: 16.png Graphic file (type png)
+<use 16.png>
+Package pdftex.def Info: 16.png  used on input line 372.
+(pdftex.def)             Requested size: 256.09404pt x 142.27768pt.
+<17.png, id=52, 377.61075pt x 151.767pt>
+File: 17.png Graphic file (type png)
+<use 17.png>
+Package pdftex.def Info: 17.png  used on input line 381.
+(pdftex.def)             Requested size: 256.08047pt x 113.81107pt.
+<18.png, id=53, 342.078pt x 133.09724pt>
+File: 18.png Graphic file (type png)
+<use 18.png>
+Package pdftex.def Info: 18.png  used on input line 390.
+(pdftex.def)             Requested size: 256.08286pt x 113.81352pt.
+<19.png, id=54, 421.575pt x 203.5605pt>
+File: 19.png Graphic file (type png)
+<use 19.png>
+Package pdftex.def Info: 19.png  used on input line 399.
+(pdftex.def)             Requested size: 256.07967pt x 142.27084pt.
+<20.png, id=55, 469.755pt x 182.48175pt>
+File: 20.png Graphic file (type png)
+<use 20.png>
+Package pdftex.def Info: 20.png  used on input line 409.
+(pdftex.def)             Requested size: 256.07233pt x 85.3599pt.
+<21.png, id=56, 496.85625pt x 208.98074pt>
+File: 21.png Graphic file (type png)
+<use 21.png>
+Package pdftex.def Info: 21.png  used on input line 418.
+(pdftex.def)             Requested size: 256.07715pt x 113.81093pt.
+ [3 <./9.png> <./11.png> <./12.png> <./13.png> <./14.png> <./15.png> <./16.png>
+ <./17.png> <./18.png> <./19.png>]
+<22.png, id=70, 302.3295pt x 133.6995pt>
+File: 22.png Graphic file (type png)
+<use 22.png>
+Package pdftex.def Info: 22.png  used on input line 427.
+(pdftex.def)             Requested size: 256.08632pt x 85.35928pt.
+<23.png, id=71, 345.08925pt x 154.176pt>
+File: 23.png Graphic file (type png)
+<use 23.png>
+Package pdftex.def Info: 23.png  used on input line 436.
+(pdftex.def)             Requested size: 256.09396pt x 113.81319pt.
+<24.png, id=72, 327.02174pt x 150.5625pt>
+File: 24.png Graphic file (type png)
+<use 24.png>
+Package pdftex.def Info: 24.png  used on input line 445.
+(pdftex.def)             Requested size: 256.08888pt x 85.36203pt.
+<25.png, id=73, 379.4175pt x 224.037pt>
+File: 25.png Graphic file (type png)
+<use 25.png>
+Package pdftex.def Info: 25.png  used on input line 454.
+(pdftex.def)             Requested size: 256.07838pt x 99.58504pt.
+<26.png, id=74, 389.65575pt x 230.66174pt>
+File: 26.png Graphic file (type png)
+<use 26.png>
+Package pdftex.def Info: 26.png  used on input line 463.
+(pdftex.def)             Requested size: 256.09146pt x 142.26614pt.
+<27.png, id=75, 519.1395pt x 302.3295pt>
+File: 27.png Graphic file (type png)
+<use 27.png>
+Package pdftex.def Info: 27.png  used on input line 472.
+(pdftex.def)             Requested size: 256.07576pt x 142.26096pt.
+<28.png, id=76, 573.94424pt x 284.86424pt>
+File: 28.png Graphic file (type png)
+<use 28.png>
+Package pdftex.def Info: 28.png  used on input line 481.
+(pdftex.def)             Requested size: 256.07434pt x 142.26224pt.
+<29.png, id=77, 578.76225pt x 505.89pt>
+File: 29.png Graphic file (type png)
+<use 29.png>
+Package pdftex.def Info: 29.png  used on input line 490.
+(pdftex.def)             Requested size: 256.07799pt x 227.62523pt.
+ [4 <./20.png> <./21.png> <./22.png> <./23.png> <./24.png> <./25.png> <./26.png
+> <./27.png> <./28.png> <./29.png>]
+(formulaSheet.aux) ) 
 Here is how much of TeX's memory you used:
- 15510 strings out of 476331
- 317241 string characters out of 5787765
+ 15700 strings out of 476331
+ 319213 string characters out of 5787765
  1898660 words of memory out of 5000000
- 35680 multiletter control sequences out of 15000+600000
+ 35844 multiletter control sequences out of 15000+600000
  515101 words of font info for 46 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  102i,14n,104p,436b,846s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/robde/AppData/Local/Pr
-ograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/robde/AppData
-/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/robd
-e/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/U
-sers/robde/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cmextra/cm
-ex7.pfb><C:/Users/robde/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
-ts/cm/cmmi10.pfb><C:/Users/robde/AppData/Local/Programs/MiKTeX/fonts/type1/publ
-ic/amsfonts/cm/cmmi5.pfb><C:/Users/robde/AppData/Local/Programs/MiKTeX/fonts/ty
-pe1/public/amsfonts/cm/cmmi7.pfb><C:/Users/robde/AppData/Local/Programs/MiKTeX/
-fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/robde/AppData/Local/Programs
-/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/robde/AppData/Local/P
-rograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/robde/AppData/
-Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/robde
-/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Use
-rs/robde/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb
-><C:/Users/robde/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symb
-ols/msam10.pfb><C:/Users/robde/AppData/Local/Programs/MiKTeX/fonts/type1/public
-/amsfonts/symbols/msbm10.pfb>
-Output written on formulaSheet.pdf (2 pages, 320493 bytes).
+<C:/Users/robde/AppData/Local/Programs/MiKTeX/fonts/type1/p
+ublic/amsfonts/cm/cmbx10.pfb><C:/Users/robde/AppData/Local/Programs/MiKTeX/font
+s/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/robde/AppData/Local/Programs/Mi
+KTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/robde/AppData/Local/Pr
+ograms/MiKTeX/fonts/type1/public/amsfonts/cmextra/cmex7.pfb><C:/Users/robde/App
+Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/
+robde/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C
+:/Users/robde/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi
+7.pfb><C:/Users/robde/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts
+/cm/cmr10.pfb><C:/Users/robde/AppData/Local/Programs/MiKTeX/fonts/type1/public/
+amsfonts/cm/cmr5.pfb><C:/Users/robde/AppData/Local/Programs/MiKTeX/fonts/type1/
+public/amsfonts/cm/cmr7.pfb><C:/Users/robde/AppData/Local/Programs/MiKTeX/fonts
+/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/robde/AppData/Local/Programs/MiK
+TeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/robde/AppData/Local/Prog
+rams/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/robde/AppData/Lo
+cal/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/ro
+bde/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pf
+b>
+Output written on formulaSheet.pdf (4 pages, 1679312 bytes).
 PDF statistics:
- 92 PDF objects out of 1000 (max. 8388607)
+ 152 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 23 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 158 words of extra memory for PDF output out of 10000 (max. 10000000)
 
