@@ -28,14 +28,56 @@ def normalize_img(image):
 
 updated_train = []
 updated_test = []
+
 for i in range(0, len(x_train)):
     updated_train.append(normalize_img(x_train[i]))
 
 for i in range(0, len(x_test)):
     updated_test.append(normalize_img(x_test[i]))
 
+
+leftRight = []
+upDown = []
+for i in range(0, len(updated_train)):          # Generate Left Right Flip
+    leftRight.append(np.fliplr(updated_train[i]))
+
+for i in range(0, len(updated_train)):          # Generate Up Down Flip
+    upDown.append(np.flipud(updated_train[i]))
+
+var1 = []
+var2 = []
+
+for i in range(0, len(updated_train)):           # Generate 0.01 Blur
+    newDataPoint = []
+    for row in updated_train[i]:
+        newRow = []
+        for element in row:
+            element += np.random.normal(0,0.01)
+            newRow.append(element)
+        newDataPoint.append(newRow)
+    var1.append(newDataPoint)
+
+for i in range(0, len(updated_train)):           # Generate 0.1 Blur
+    newDataPoint = []
+    for row in updated_train[i]:
+        newRow = []
+        for element in row:
+            element += np.random.normal(0,0.1)
+            newRow.append(element)
+        newDataPoint.append(newRow)
+    var2.append(newDataPoint)
+
+var1 = np.array(var1)
+var2 = np.array(var2)
+leftRight = np.array(leftRight)
+upDown = np.array(upDown)
+
 updated_train = np.array(updated_train)
 updated_test = np.array(updated_test)
+
+# Combine all of them datasets
+updated_train = np.concatenate((updated_train, leftRight, upDown, var1, var2), axis=0)
+y_train = np.concatenate((y_train, y_train, y_train, y_train, y_train), axis=0)
 
 # ==================== Model Definition ====================
 
@@ -87,38 +129,132 @@ model.compile(
     loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
     metrics=[tf.keras.metrics.SparseCategoricalAccuracy()],
 )
-
-print(model.summary())
-
+'''
 trainingAccuracy = []
 trainingLoss = []
-for i in range(0, 1):
+
+testAccuracy = []
+testLoss = []
+
+for i in range(0, 5):
     history = model.fit(updated_train, y_train, epochs=1, batch_size=512)
 
-    trainingAccuracy.append((history.history["sparse_categorical_accuracy"], 1+i))
-    trainingLoss.append((history.history["loss"], 1+i))
+    trainingAccuracy.append(history.history["sparse_categorical_accuracy"][0])
+    trainingLoss.append(history.history["loss"][0])
 
-    model.save('q3Trained'+str(i)+'.keras')
+    test_loss, test_acc = model.evaluate(updated_test, y_test, verbose=1)
 
+    testAccuracy.append(test_acc)
+    testLoss.append(test_loss)
+    model.save('q3TrainedExtra'+str(i)+'.keras')
 
-plt.plot(trainingAccuracy)
-plt.plot(trainingLoss)
-plt.title('Accuracy vs # of Epochs')
+# ==================== Graphing ====================
+x = []
+for i in range(0, len(testAccuracy)):
+    x.append(i+1)
+
+plt.plot(x, trainingAccuracy)
+plt.title('Training Accuracy vs # of Epochs')
 plt.ylabel('Accuracy')
 plt.xlabel('Epoch')
-plt.legend(['Train', 'Test'], loc='upper left')
 plt.grid()
 plt.show()
 
+plt.plot(x, trainingLoss)
+plt.title('Training Loss vs # of Epochs')
+plt.ylabel('Loss')
+plt.xlabel('Epoch')
+plt.grid()
+plt.show()
+
+plt.plot(x, testAccuracy)
+plt.title('Test Accuracy vs # of Epochs')
+plt.ylabel('Accuracy')
+plt.xlabel('Epoch')
+plt.grid()
+plt.show()
+
+plt.plot(x, testLoss)
+plt.title('Test Loss vs # of Epochs')
+plt.ylabel('Loss')
+plt.xlabel('Epoch')
+plt.grid()
+plt.show()
 '''
-new_model = tf.keras.models.load_model('q3Trained.keras')
 
+trainedModel = tf.keras.models.load_model('q3TrainedExtra4.keras')
 
-predicted = new_model.predict(updated_test, verbose=1)
-print(predicted)
-predicted = np.argmax(predicted, axis=1)[:100]
-label = y_test[:100]
+_, test_acc = trainedModel.evaluate(updated_test, y_test, verbose=1)
 
-print("Predicted label: ", *predicted)
-print("True label     : ", *label)
-'''
+leftRight = []
+upDown = []
+for i in range(0, len(updated_test)):
+    leftRight.append(np.fliplr(updated_test[i]))
+
+for i in range(0, len(updated_test)):
+    upDown.append(np.flipud(updated_test[i]))
+
+leftRight = np.array(leftRight)
+upDown = np.array(upDown)
+
+_, test_acc_lr = trainedModel.evaluate(leftRight, y_test, verbose=1)
+_, test_acc_ud = trainedModel.evaluate(upDown, y_test, verbose=1)
+
+print(test_acc)
+print(test_acc_lr)
+print(test_acc_ud)
+
+plt.bar(["No Flip", "Left Right Flip", "Up Down Flip"], [test_acc, test_acc_lr, test_acc_ud], color ='maroon',
+        width = 0.4)
+plt.ylabel("Test Accuracy")
+plt.title("Test Accuracy vs Types of Flip")
+plt.show()
+
+var1 = []
+var2 = []
+var3 = []
+
+for i in range(0, len(updated_test)):
+    newDataPoint = []
+    for row in updated_test[i]:
+        newRow = []
+        for element in row:
+            element += np.random.normal(0,0.01)
+            newRow.append(element)
+        newDataPoint.append(newRow)
+    var1.append(newDataPoint)
+
+for i in range(0, len(updated_test)):
+    newDataPoint = []
+    for row in updated_test[i]:
+        newRow = []
+        for element in row:
+            element += np.random.normal(0,0.1)
+            newRow.append(element)
+        newDataPoint.append(newRow)
+    var2.append(newDataPoint)
+
+for i in range(0, len(updated_test)):
+    newDataPoint = []
+    for row in updated_test[i]:
+        newRow = []
+        for element in row:
+            element += np.random.normal(0,1)
+            newRow.append(element)
+        newDataPoint.append(newRow)
+    var3.append(newDataPoint)
+
+var1 = np.array(var1)
+var2 = np.array(var2)
+var3 = np.array(var3)
+
+_, test_acc_var1 = trainedModel.evaluate(var1, y_test, verbose=1)
+_, test_acc_var2 = trainedModel.evaluate(var2, y_test, verbose=1)
+_, test_acc_var3 = trainedModel.evaluate(var3, y_test, verbose=1)
+
+plt.bar(["No Blur", "0.01 Blur", "0.1 Blur", "1 Blur"], [test_acc, test_acc_var1, test_acc_var2, test_acc_var3], color ='maroon',
+        width = 0.4)
+plt.ylabel("Test Accuracy")
+plt.title("Test Accuracy vs Amount of Blur")
+plt.show()
+print(test_acc_var1)
