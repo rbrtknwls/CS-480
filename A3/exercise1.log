@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.4) (preloaded format=pdflatex 2023.9.12)  15 NOV 2023 16:36
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.4) (preloaded format=pdflatex 2023.9.12)  15 NOV 2023 23:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**./exercise2.tex
-(exercise2.tex
+**./exercise1.tex
+(exercise1.tex
 LaTeX2e <2022-11-01> patch level 1
 L3 programming layer <2023-03-30>
 (C:\Users\robde\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
@@ -260,8 +260,8 @@ tex.def
 File: l3backend-pdftex.def 2023-03-30 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count296
 \l__pdf_internal_box=\box61
-) (exercise2.aux)
-\openout1 = `exercise2.aux'.
+) (exercise1.aux)
+\openout1 = `exercise1.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
 LaTeX Font Info:    ... okay on input line 13.
@@ -347,98 +347,79 @@ Package caption Info: End \AtBeginDocument code.
 (C:\Users\robde\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2023/02/27 1.9 listings language file
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 53.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 51.
 
 
 (C:\Users\robde\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 53.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 51.
 
 
 (C:\Users\robde\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<testA.png, id=1, 642.4pt x 481.8pt>
-File: testA.png Graphic file (type png)
-<use testA.png>
-Package pdftex.def Info: testA.png  used on input line 55.
-(pdftex.def)             Requested size: 234.8775pt x 176.15327pt.
-<trainA.png, id=2, 642.4pt x 481.8pt>
-File: trainA.png Graphic file (type png)
-<use trainA.png>
-Package pdftex.def Info: trainA.png  used on input line 55.
-(pdftex.def)             Requested size: 234.8775pt x 176.15327pt.
-<testL.png, id=3, 642.4pt x 481.8pt>
-File: testL.png Graphic file (type png)
-<use testL.png>
-Package pdftex.def Info: testL.png  used on input line 58.
-(pdftex.def)             Requested size: 234.8775pt x 176.15327pt.
-<trainL.png, id=4, 642.4pt x 481.8pt>
-File: trainL.png Graphic file (type png)
-<use trainL.png>
-Package pdftex.def Info: trainL.png  used on input line 58.
-(pdftex.def)             Requested size: 234.8775pt x 176.15327pt.
+Underfull \hbox (badness 10000) in paragraph at lines 58--63
 
-Overfull \hbox (34.04219pt too wide) in paragraph at lines 53--62
-[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 58--63
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 58--63
+
  []
 
 [1
 
-{C:/Users/robde/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <./testA.png 
-(PNG copy)> <./trainA.png (PNG copy)> <./testL.png (PNG copy)> <./trainL.png (P
-NG copy)>]
-<flip.png, id=12, 642.4pt x 481.8pt>
-File: flip.png Graphic file (type png)
-<use flip.png>
-Package pdftex.def Info: flip.png  used on input line 64.
-(pdftex.def)             Requested size: 328.82707pt x 246.62634pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 66--68
+{C:/Users/robde/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
+Underfull \hbox (badness 10000) in paragraph at lines 72--74
 
  []
 
-<blur.png, id=13, 642.4pt x 481.8pt>
-File: blur.png Graphic file (type png)
-<use blur.png>
-Package pdftex.def Info: blur.png  used on input line 68.
-(pdftex.def)             Requested size: 328.82707pt x 246.62634pt.
-[2 <./flip.png (PNG copy)> <./blur.png (PNG copy)>]
-<flip2.png, id=18, 642.4pt x 481.8pt>
-File: flip2.png Graphic file (type png)
-<use flip2.png>
-Package pdftex.def Info: flip2.png  used on input line 75.
-(pdftex.def)             Requested size: 234.8775pt x 176.15327pt.
-<blur2.png, id=19, 642.4pt x 481.8pt>
-File: blur2.png Graphic file (type png)
-<use blur2.png>
-Package pdftex.def Info: blur2.png  used on input line 75.
-(pdftex.def)             Requested size: 234.8775pt x 176.15327pt.
 
-Overfull \hbox (24.00002pt too wide) in paragraph at lines 72--80
-[]
+Underfull \hbox (badness 10000) in paragraph at lines 86--89
+
  []
 
-[3 <./flip2.png (PNG copy)> <./blur2.png (PNG copy)>] [4] [5] [6] [7] [8]
-(exercise2.aux) ) 
+[2]
+Underfull \hbox (badness 10000) in paragraph at lines 108--111
+
+ []
+
+[3] [4] (exercise1.aux) ) 
 Here is how much of TeX's memory you used:
- 7080 strings out of 476331
- 110621 string characters out of 5787765
- 1947660 words of memory out of 5000000
- 27450 multiletter control sequences out of 15000+600000
- 518004 words of font info for 54 fonts, out of 8000000 for 9000
+ 6521 strings out of 476331
+ 105248 string characters out of 5787765
+ 1868660 words of memory out of 5000000
+ 26900 multiletter control sequences out of 15000+600000
+ 518159 words of font info for 54 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 69i,10n,79p,387b,1948s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/robde/AppData/Local/Programs/MiKTeX/fonts/type1/publ
-ic/amsfonts/cm/cmbx12.pfb><C:/Users/robde/AppData/Local/Programs/MiKTeX/fonts/t
-ype1/public/amsfonts/cm/cmr10.pfb><C:/Users/robde/AppData/Local/Programs/MiKTeX
-/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/robde/AppData/Local/Program
-s/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/robde/AppData/Local
-/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on exercise2.pdf (8 pages, 264952 bytes).
+ 69i,11n,79p,387b,344s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/robde/AppData/Local/Programs/MiKTeX/fonts/ty
+pe1/public/amsfonts/cm/cmbx12.pfb><C:/Users/robde/AppData/Local/Programs/MiKTeX
+/fonts/type1/public/amsfonts/cm/cmbx8.pfb><C:/Users/robde/AppData/Local/Program
+s/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/robde/AppData/Loca
+l/Programs/MiKTeX/fonts/type1/public/amsfonts/cmextra/cmex8.pfb><C:/Users/robde
+/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Us
+ers/robde/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pf
+b><C:/Users/robde/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
+cmmi8.pfb><C:/Users/robde/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsf
+onts/cm/cmr10.pfb><C:/Users/robde/AppData/Local/Programs/MiKTeX/fonts/type1/pub
+lic/amsfonts/cm/cmr12.pfb><C:/Users/robde/AppData/Local/Programs/MiKTeX/fonts/t
+ype1/public/amsfonts/cm/cmr17.pfb><C:/Users/robde/AppData/Local/Programs/MiKTeX
+/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/robde/AppData/Local/Programs
+/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/robde/AppData/Local/P
+rograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/robde/AppDat
+a/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/robd
+e/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+
+Output written on exercise1.pdf (4 pages, 162507 bytes).
 PDF statistics:
- 62 PDF objects out of 1000 (max. 8388607)
+ 90 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 41 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

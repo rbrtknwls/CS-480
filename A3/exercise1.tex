@@ -1,0 +1,145 @@
+\documentclass{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage{blkarray}
+\usepackage{multirow}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\begin{document}
+\begin{titlepage}
+	\setlength{\parindent}{0pt}
+	\large
+
+\vspace*{-2cm}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+University of Waterloo \par
+CS 480 \par
+\vspace{0.05cm}
+r2knowle: 2023-11-13
+\vspace{0.2cm}
+
+{\huge Exercise \# 1 \par}
+\hrule
+
+\vspace{0.5cm}
+\textbf{Q1a)} Our goal will be to prove that regardless of the updates, $p_i$ will remain constant, as if this is the case it implies the updates are equivalent. Note that this means we need to prove for all $w_i$ and $\widetilde{w_i}$ is must be the case that:
+\[ p_i^t = \frac{w_i^t}{\sum_j w_j^t} = \frac{\widetilde{w}^t_i}{\sum_j \widetilde{w_j}} \]
+Further more this implies that we need to prove $w_i = a\widetilde{w_i}$ where $\exists a \in \mathbb{R}$  as if this is true it follows that:
+\begin{align*}
+\frac{w_i^t}{\sum_j w_j^t} &= \frac{a}{a} \times \frac{w_i^t}{\sum_j w_j^t} \\
+&= \frac{aw_i^t}{\sum_j aw_j^t} \\
+&= \frac{\widetilde{w}_i^t}{\sum_j \widetilde{w}_j^t}
+\end{align*}
+Therefore using induction we will prove that for any t that: $w_i^t = a\widetilde{w}_i^t$. \\\\
+\textbf{Basecase:} At time t = 1 we initialize the weights to be $[\frac{1}{n}, ..., \frac{1}{n}] \in \mathbb{R}$ for both $w_i$ and $\widetilde{w_i}$ therefore it follows that $w_i = a \widetilde{w_i}$ for the constant a = 1, satisfying our basecase.\\\\
+\textbf{Inductive Hypothesis:} We are going to assume that for any $t\geq 0, w_i^t = a \widetilde{w}^t_i$, we are now going to prove given the definitions in the question that $w_i^{t+1} = a \widetilde{w}^{t_i+1}$.\\\\
+\textbf{Inductive Step:} To prove that $w_i^{t+1} = a \widetilde{w}^{t_i+1}$, we will show that $w_i^{t+1}$ is equivlant to $a \widetilde{w}^{t_i+1}$ given our hypothesis where $\exists a \in \mathbb{R}$. We will first simplify $w_i^{t+1}$ to get:
+\begin{align*}
+w_i^{t+1} &= w_i^t \text{exp(}-y_i\beta_th_t(\textbf{x}_i)) \\
+&= w_i^t \text{exp(}-y_i(\frac{1}{2}\log{\frac{1-\epsilon_t}{\epsilon_t}})  h_t(\textbf{x}_i)) \\
+&= w_i^t \text{exp(}-y_ih_t(\textbf{x}_i)\frac{1}{2}\log{\frac{1-\epsilon_t}{\epsilon_t}}) \\
+&= w_i^t \text{exp(}\log{((\frac{1-\epsilon_t}{\epsilon_t}})^{-y_ih_t(\textbf{x}_i)\frac{1}{2}})) \\
+&= w_i^t \frac{1-\epsilon_t}{\epsilon_t}^{-y_ih_t(\textbf{x}_i)\frac{1}{2}} \\
+&= w_i^t \frac{\epsilon_t}{1-\epsilon_t}^{y_ih_t(\textbf{x}_i)\frac{1}{2}} 
+\end{align*}
+\newpage
+Note that $\epsilon_t$ is constant for both types of update. Before we continue we also need to mention that $y_i$ and $h_i$ are only ever $1$ or $-1$. This means that if they are the same value $y_ih_i$ = 1 and -1 if otherwise. \\\\
+It thus follows that $1- | h_t(x_i) -y_i|$ will be equivalent, as if they are the same the equation will be 1, and if they are different its - 1. Therefore we can replace our equation to get:
+\begin{align*}
+&= w_i^t \widetilde{\beta}_t^{(1- | h_t(x_i) - y_i |)\frac{1}{2}} \\ 
+&= w_i^t \widetilde{\beta}_t^{(1- | (2\widetilde{h}_t(x_i)  -1) - (2\widetilde{y}_i - 1)|)\frac{1}{2}}  \\
+&= w_i^t \widetilde{\beta}_t^{\frac{1}{2} -|\widetilde{y}_i - \widetilde{h}_t(x_i)|}\\
+&= w_i^t \widetilde{\beta}_t^{1 -|\widetilde{y}_i - \widetilde{h}_t(x_i)|}\widetilde{\beta}_t^{-\frac{1}{2}} \\
+&= a \widetilde{w}_i^t \widetilde{\beta}_t^{1 -|\widetilde{y}_i - \widetilde{h}_t(x_i)|}\widetilde{\beta}_t^{-\frac{1}{2}}
+\end{align*}
+Note that since a just needs to be a constant for each $w_i$ but not for each iteration and $\beta_t$ is a constant as $\epsilon_t$ is a constant, we will set a new $a_t = a_{t-1}\times\widetilde{\beta}_t^{-\frac{1}{2}}$ and thus we get:
+\begin{align*}
+&= a_{t-1} \widetilde{w}_i^t \widetilde{\beta}_t^{1 -|\widetilde{y}_i - \widetilde{h}_t(x_i)|}\widetilde{\beta}_t^{-\frac{1}{2}} \\
+w_i^{t+1}&= a_t \widetilde{w}_i^{t} \widetilde{\beta}_t^{1 -|\widetilde{y}_i - \widetilde{h}_t(x_i)|} \\
+w_i^{t+1}&= a \widetilde{w}_i^{t+1}
+\end{align*}
+Thus proving the induction, and showing how $\forall t \geq 0, w_i^{t} = a_t \widetilde{w}_i^{t}$. Which thus means $p_i$ will be the same for both updates, and therefore both equations are equivalent.\\\\
+\textbf{Q1b)} To begin we are going to use the Bernoulli model which states that:
+\[ Pr[ y = 1 | X = x ] = p(x) \in [0, 1] \]
+\[ Pr[ y = -1 | X = x ] = 1- p(x) \in [0, 1] \]
+Since we are given the minimizer is $e^{-yH}$ this would imply that:
+\[ p(x) = e^{-H} \text{ (as y = 1 in this case)}  \]
+Therefore it follows that:
+\begin{align*}
+\frac{Pr[ y = 1 | X = x ]}{Pr[ y = -1 | X = x ]} &= \frac{p(x)}{1-p(x)} \\
+&= \frac{e^{-H}}{1-e^{-H}} \\
+&= \frac{e^{-H}}{1^{-H}-e^{-H}} \\
+&= (\frac{e}{1-e})^{-H} \\
+&= (\frac{1-e}{e})^{H} \\
+\end{align*}
+Now we will take the log of both sides to get:
+\begin{align*}
+\frac{Pr[ y = 1 | X = x ]}{Pr[ y = -1 | X = x ]} &= (\frac{1-e}{e})^{H} \\
+\log\frac{Pr[ y = 1 | X = x ]}{Pr[ y = -1 | X = x ]} &= \log(\frac{1-e}{e})^{H} \\
+&=  H \log(\frac{1-e}{e}) \\
+&\approx H \\
+&\approx \sum_i^T \beta_th_t(x)
+\end{align*}
+Thus proving how that minimizer of the given exponential loss is proportional to the log odd loss as required.\\\\
+\textbf{Q1c)} We are given the definition that:
+\[ \epsilon_t = \epsilon_t(h_t(x)) = \sum_{i=1}^n p^t_i \times [[h_t(x_i) \neq y_i ]]  \]
+Note that since $h_i$ and $y_i$ is either -1 or 1, this would imply that $[[-h_t(x_i) \neq y_i ]]$ is the same as $[[h_t(x_i) = y_i ]]$. Therefore we can define $\widetilde{\epsilon_t}$ to be:
+\[ \widetilde{\epsilon}_t = \widetilde{\epsilon}_t(-h_t(x)) = \sum_{i=1}^n p^t_i \times [[h_t(x_i) = y_i ]] \]
+Notice that the sum of $\widetilde{\epsilon_t}$ and $\epsilon_t$ has the following property:
+\begin{align*}
+\epsilon_t + \widetilde{\epsilon_t} &= \sum_{i=1}^n p^t_i \times [[h_t(x_i) \neq y_i ]] + \sum_{i=1}^n p^t_i \times [[h_t(x_i) = y_i ]] \\
+&= \sum_{i=1}^n p^t_i \\
+&= \sum_{i=1}^n \frac{w_i^t}{\sum_{j=1}^n w_j^t}\\
+&= \frac{\sum_{i=1}^nw_i^t}{\sum_{j=1}^n w_j^t} \\
+&= 1
+\end{align*}
+Which thus implies that:
+\[ \epsilon_t = 1 - \widetilde{\epsilon}_t \]
+\[ \widetilde{\epsilon}_t = 1 - \epsilon_t \]
+\newpage
+Moving forward we can then define a new $\widetilde{\beta}_t$ based on the $\widetilde{\epsilon}_t$:
+\begin{align*}
+\widetilde{\beta}_t = \frac{1}{2} \log \frac{1-\widetilde{\epsilon}_t}{\widetilde{\epsilon}_t}
+\end{align*}
+To prove the updates to $w_t$ are equivalent we will prove that:
+\[ w^t_i \text{exp}(-y_i\beta_th_t(x)) = w^t_i \text{exp}(-y_i\widetilde{\beta}_t\widetilde{h}_t(x)) \]
+To do so we will begin with:
+\begin{align*}
+w^t_i \text{exp}(-y_i\beta_th_t(x)) &= w^t_i \text{exp}(y_i\beta_t\widetilde{h}_t(x)) \\
+&= w^t_i \text{exp}(y_i( \frac{1}{2} \log \frac{1-\epsilon_t}{\epsilon_t} ) \\
+&= w^t_i \text{exp}(y_i( \frac{1}{2} \log \frac{\widetilde{\epsilon}_t}{1- \widetilde{\epsilon}_t} ) \widetilde{h}_t(x)) \\
+&= w^t_i \text{exp}(y_i( \frac{1}{2} \log \frac{1- \widetilde{\epsilon}_t}{\widetilde{\epsilon}_t}^{-1} ) \widetilde{h}_t(x))  \\
+&= w^t_i \text{exp}(y_i( - \frac{1}{2} \log \frac{1- \widetilde{\epsilon}_t}{\widetilde{\epsilon}_t} ) \widetilde{h}_t(x)) \\
+&= w^t_i \text{exp}(- y_i\widetilde{\beta}_t \widetilde{h}_t(x)) 
+\end{align*}
+Thus showing how the updates are equivalent to each other.
+
+
+\end{titlepage}
+\end{document}
