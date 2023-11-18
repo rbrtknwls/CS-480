@@ -129,6 +129,7 @@ model.compile(
     loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
     metrics=[tf.keras.metrics.SparseCategoricalAccuracy()],
 )
+print(model.summary())
 '''
 trainingAccuracy = []
 trainingLoss = []

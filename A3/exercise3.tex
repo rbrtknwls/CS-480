@@ -1,0 +1,97 @@
+\documentclass{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage{blkarray}
+\usepackage{multirow}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\begin{document}
+\begin{titlepage}
+	\setlength{\parindent}{0pt}
+	\large
+
+\vspace*{-2cm}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+University of Waterloo \par
+CS 480 \par
+\vspace{0.05cm}
+r2knowle: 2023-11-13
+\vspace{0.2cm}
+
+{\huge Exercise \# 3 \par}
+\hrule
+
+\vspace{0.5cm}
+\textbf{Q3a)} For this question we are going to derive both the expectation step and the maximization step independently: \\\\
+\textbf{Expectation Step: } To begin we are given that $S_k$ is diagonal, which gives us the following properties:
+\[ |S_k| = \sigma_1^2 \times \sigma_2^2 \times ... \times \sigma_n^2 = \prod_i^n \sigma_i^2 \]
+\[ S_k^{-1} = \begin{bmatrix}
+\frac{1}{\sigma_1^2} & ... & 0 \\
+\vdots & & \vdots \\
+0 & & \frac{1}{\sigma_n^2} \\
+\end{bmatrix} \]
+Continuing from the slides the we get that:
+\begin{align*}
+r_{ik} &= q_i(Z_i = k) \\
+&= p_{\theta}(Z_i = k | x_i) \\
+&= \frac{ p_{\theta} (Z_i = j, x_i)} { p_{\theta}(x_i)} \\
+&= \frac{ \pi_k N(\mu_k, S_k, x_i) } { \sum^k_{l=1} \pi_k N(\mu_l, S_l, x_i))}
+\end{align*}
+Note that the denominator is calculated outside of the red step, and the red step is only the numerator. Therefore any optimization for a diagonal matrix will have to occur within $p_{\theta} (Z_i = j, x_i)$, thus we get the following expansion:
+\begin{align*}
+\pi_k N(\mu_k, S_k, X_i) &= \frac{1}{\sqrt{ \lvert 2\pi S_k \rvert }} \text{exp}\left( - \frac{1}{2}(x_i - \mu_k)^T S_k^{-1}(x_i - \mu_k) \right) \\
+&= \frac{1}{\sqrt{  2\pi^k  \lvert S_k \rvert }} \text{exp}\left( - \frac{1}{2} \left( \frac{(x_{i1}-\mu_{k1})^2}{\sigma_1^2} + \frac{(x_{i2}-\mu_{k2})^2}{\sigma_2^2} + ... + \frac{(x_{in}-\mu_{kn})^2}{\sigma_n^2}  \right) \right) \\
+&= \frac{\text{exp}\left( - \frac{1}{2} \left( \frac{(x_{i1}-\mu_{k1})^2}{\sigma_1^2} + \frac{(x_{i2}-\mu_{k2})^2}{\sigma_2^2} + ... + \frac{(x_{in}-\mu_{kn})^2}{\sigma_n^2}  \right) \right)}{\sqrt{  2\pi^k  \sigma_1^2 \times \sigma_2^2 \times ... \times \sigma_n^2}} \\
+&= \frac{\text{exp}\left( - \frac{1}{2} \frac{(x_{i1}-\mu_{k1})^2}{\sigma_1^2} \right)}{\sqrt{  2\pi  \sigma_1^2}} \times \frac{\text{exp}\left( - \frac{1}{2} \frac{(x_{i2}-\mu_{k2})^2}{\sigma_2^2} \right)}{\sqrt{  2\pi  \sigma_2^2}} \times ... \times \frac{\text{exp}\left( - \frac{1}{2} \frac{(x_{in}-\mu_{kn})^2}{\sigma_n^2} \right)}{\sqrt{  2\pi  \sigma_n^2}}\\
+\end{align*}
+\newpage
+\textbf{Maximization Step}
+As given in the slides are our is to maximize the following:
+\[ p_\theta(x) = \sum^k_i \pi_k N(\mu_k, S_k, x_i) \]
+Which from the slides can we know can be rewritten as:
+\begin{align*}
+&=  \text{argmax}_\theta \sum^n_{i=1}\sum_{j=1}^k q_i(Z_i = j) \log p_\theta(x_i, Z_i = j)  \\
+&= \text{argmax}_\theta \sum^n_{i=1}\sum_{j=1}^k q_i(Z_i = j) \log \left[ \frac{\pi_k}{\sqrt{\lvert 2\pi S_k \rvert}}\text{exp}\left( - \frac{1}{2}(x_i - \mu_k)^T S_k^{-1}(x_i - \mu_k) \right) \right]\\
+&= \text{argmax}_\theta \sum^n_{i=1}\sum_{j=1}^k q_i(Z_i = j) \left[ \log \left( \pi_k \right) - \frac{k}{2} \log \left( 2\pi \right) - \frac{1}{2}\log \left(\lvert S_k \rvert \right) + \left( - \frac{1}{2}(x_i - \mu_k)^T S_k^{-1}(x_i - \mu_k) \right) \right] \\
+&= \text{argmax}_\theta \sum^n_{i=1}\sum_{j=1}^k r_{ik} \left[ \log \left( \pi_k \right) - \frac{k}{2} \log \left( 2\pi \right) - \frac{1}{2}\log \left(\lvert S_k \rvert \right) + \left( - \frac{1}{2}(x_i - \mu_k)^T S_k^{-1}(x_i - \mu_k) \right) \right] 
+\end{align*}
+We can then take the derivative w.r.t to $S_k$ and set to zero, to find where this is concave function is maximized:
+\begin{align*}
+\sum^n_{i=1}\sum_{j=1}^k r_{ik} \left[ \log \left( \pi_k \right)' - \frac{k}{2} \log \left( 2\pi \right)' - \frac{1}{2}\log \left(\lvert S_k \rvert \right)' + \left( - \frac{1}{2}(x_i - \mu_k)^T S_k^{-1}(x_i - \mu_k) \right)' \right]  &= 0 \\
+\sum^n_{i=1}\sum_{j=1}^k r_{ik} \left[ 0 - 0 - \frac{1}{2}\log \left( \prod_i^n \sigma_i^2 \right)' + \left( - \frac{1}{2}(x_i - \mu_k)^T (x_i - \mu_k) \right) \right]  &= 0 \\
+\sum^n_{i=1}\sum_{j=1}^k r_{ik} \left[ 0 - 0 - \frac{1}{\sigma_{ik}^2}  + \left( - \frac{1}{2}(x_i - \mu_k)^T (x_i - \mu_k) \right) \right]  &= 0 
+\end{align*}
+We can rearrange to get:
+\begin{align*}
+\sum^n_{i=1} \frac{ r_{ik}}{\sigma_{ik}^2} &= \sum^n_{i=1} \frac{1}{2}(x_i - \mu_k)^T (x_i - \mu_k) \\
+S_k &= \sum^n_{i=1} \frac{ \frac{1}{2}(x_i - \mu_k)^T (x_i - \mu_k)}{r_{ik}}\\\\
+\end{align*}
+On the next page is my implementation of the algorithm. 
+\end{titlepage}
+\end{document}

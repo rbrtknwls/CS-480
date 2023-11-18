@@ -85,26 +85,23 @@ w_i^{t+1}&= a_t \widetilde{w}_i^{t} \widetilde{\beta}_t^{1 -|\widetilde{y}_i - \
 w_i^{t+1}&= a \widetilde{w}_i^{t+1}
 \end{align*}
 Thus proving the induction, and showing how $\forall t \geq 0, w_i^{t} = a_t \widetilde{w}_i^{t}$. Which thus means $p_i$ will be the same for both updates, and therefore both equations are equivalent.\\\\
-\textbf{Q1b)} To begin we are going to use the Bernoulli model which states that:
-\[ Pr[ y = 1 | X = x ] = p(x) \in [0, 1] \]
-\[ Pr[ y = -1 | X = x ] = 1- p(x) \in [0, 1] \]
-Since we are given the minimizer is $e^{-yH}$ this would imply that:
-\[ p(x) = e^{-H} \text{ (as y = 1 in this case)}  \]
-Therefore it follows that:
+\textbf{Q1b)} It then follows from our definition of expected values:
+\[ E[e^{-yH} |X=x]  = e^{-H}\times Pr(y=1 | X=x) + e^{H}\times Pr(y=-1 | X=x) \]
+If we take the derivative w.r.t to H we thus get:
+\[ -e^{-H}\times Pr(y=1 | X=x) + e^{H}\times Pr(y=-1 | X=x) = 0 \]
+We can then rearrange to get:
 \begin{align*}
-\frac{Pr[ y = 1 | X = x ]}{Pr[ y = -1 | X = x ]} &= \frac{p(x)}{1-p(x)} \\
-&= \frac{e^{-H}}{1-e^{-H}} \\
-&= \frac{e^{-H}}{1^{-H}-e^{-H}} \\
-&= (\frac{e}{1-e})^{-H} \\
-&= (\frac{1-e}{e})^{H} \\
+-e^{-H}\times Pr(y=1 | X=x) &=  -e^{H}\times Pr(y=-1 | X=x)  \\
+\frac{Pr[ y = 1 | X = x ]}{Pr[ y = -1 | X = x ]} &= \frac{-e^H}{-e^{-H}} \\
+&= e^{2H} \\
 \end{align*}
 Now we will take the log of both sides to get:
 \begin{align*}
-\frac{Pr[ y = 1 | X = x ]}{Pr[ y = -1 | X = x ]} &= (\frac{1-e}{e})^{H} \\
-\log\frac{Pr[ y = 1 | X = x ]}{Pr[ y = -1 | X = x ]} &= \log(\frac{1-e}{e})^{H} \\
-&=  H \log(\frac{1-e}{e}) \\
-&\approx H \\
-&\approx \sum_i^T \beta_th_t(x)
+\frac{Pr[ y = 1 | X = x ]}{Pr[ y = -1 | X = x ]} &= e^{2H} \\
+\log\frac{Pr[ y = 1 | X = x ]}{Pr[ y = -1 | X = x ]} &= \log(e^{2H}) \\
+&=  2H \\
+&\propto H \\
+&= \sum_i^T \beta_th_t(x)
 \end{align*}
 Thus proving how that minimizer of the given exponential loss is proportional to the log odd loss as required.\\\\
 \textbf{Q1c)} We are given the definition that:
@@ -138,8 +135,31 @@ w^t_i \text{exp}(-y_i\beta_th_t(x)) &= w^t_i \text{exp}(y_i\beta_t\widetilde{h}_
 &= w^t_i \text{exp}(y_i( - \frac{1}{2} \log \frac{1- \widetilde{\epsilon}_t}{\widetilde{\epsilon}_t} ) \widetilde{h}_t(x)) \\
 &= w^t_i \text{exp}(- y_i\widetilde{\beta}_t \widetilde{h}_t(x)) 
 \end{align*}
-Thus showing how the updates are equivalent to each other.
-
-
+Thus showing how the updates are equivalent to each other.\\\\\\
+\textbf{Q1d)} To begin we are given the following minimizer:
+\[ \text{min}_{\beta} E[e^{-y\beta h_t(x)} |X=x] \]
+From this we can then derive that:
+\[ = \text{min}_{\beta} \sum_i^n p_i \times e^{-y\beta h_t(x)} \]
+Note that we have two cases, either the data is correctly classified in which case $-yh_t(x)$ is negative or the case where the data is classified incorrectly such that $-yh_t(x)$ is positive. Thus we can split this into:
+\[  = \text{min}_{\beta} \sum_{i, y=h_t(x)}^n p_i \times e^{-y\beta h_t(x)} +  \sum_{i, y\neq h_t(x)}^n p_i \times e^{y\beta h_t(x)} \]
+Another way we can write this is to use the [[$h_t \neq y_i$]] notation as its equivalent: 
+\[  = \text{min}_{\beta} \sum_{i}^n p_i \times e^{-\beta} \times [[h_t = y_i]] +  \sum_{i}^n p_i \times e^{\beta} \times [[h_t \neq y_i] \]
+\[  = \text{min}_{\beta}  e^{\beta} \sum_{i}^n p_i \times [[h_t = y_i]] +  e^{\beta} \sum_{i}^n p_i \times [[h_t \neq y_i] \]
+From the definition given we $\sum_{i}^n p_i \times [[h_t = y_i]] = 1 - \epsilon_t$ and $\sum_{i}^n p_i \times [[h_t \neq y_i]] = \epsilon_t$ and so we get:
+\begin{align*}
+&= \text{min}_{\beta}  e^{-\beta} \sum_{i}^n p_i \times [[h_t = y_i]] +  e^{\beta} \sum_{i}^n p_i \times [[h_t \neq y_i] \\
+&= \text{min}_{\beta}  e^{-\beta} (1-\epsilon_t) +  e^{\beta} \epsilon_t
+\end{align*}
+Taking the derivative w.r.t $\beta$ gives us:
+\begin{align*}
+0 &=  e^{-\beta} (1-\epsilon_t) +  e^{\beta} \epsilon_t \\
+0 &=  -e^{-\beta} + e^{-\beta}\epsilon_t +  e^{\beta} \epsilon_t \\
+0 &= \epsilon_t - 1 + e^{2\beta} \epsilon_t \\
+1 - \epsilon_t &= e^{2\beta} \epsilon_t \\
+\frac{1 - \epsilon_t}{\epsilon_t} &= e^{2\beta} \\
+\beta &= \frac{1}{2} \log \frac{1-\epsilon_t}{\epsilon_t}
+\end{align*}
+Showing that our $\beta$ is optimal as required. \\\\
+\textbf{Q1e)} We are given by equation 10), that:
 \end{titlepage}
 \end{document}
