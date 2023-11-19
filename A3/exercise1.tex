@@ -160,6 +160,15 @@ Taking the derivative w.r.t $\beta$ gives us:
 \beta &= \frac{1}{2} \log \frac{1-\epsilon_t}{\epsilon_t}
 \end{align*}
 Showing that our $\beta$ is optimal as required. \\\\
-\textbf{Q1e)} We are given by equation 10), that:
+\textbf{Q1e)} We are given that if $y_i$ is not equal to $h_t(x_i)$, it must be the case that since both of them are either -1 or 1, that $y_ih_t(x_i)$. Therefore we get:
+\begin{align*}
+\epsilon_{t+1} &= \sum_i^n p_i^{t+1} \times [[h_t \neq y_i]] \\
+&=  \sum_i^n \frac{w_i^{t+1}}{\sum_j^n w_i^{t+1}} \times [[h_t \neq y_i]] \\
+&= \sum_i^n \frac{w_i^{t}\times \text{exp}(-y_i\beta h_i)}{\sum_j^n w_i^{t+1}} \times [[h_t \neq y_i]] \\
+&= \sum_i^n \frac{w_i^{t}\times \text{exp}(-y_i\beta h_i)}{\sum_j^n w_i^{t+1}} \times [[h_t \neq y_i]] \\
+&= \sum_i^n \frac{w_i^{t}\times \text{exp}(\beta)}{\sum_j^n w_j^{t+1}} \times [[h_t \neq y_i]] \\
+&= \frac{\sum_i^n  w_i^{t}}{\sum_j^n w_j^{t+1}} \times [[h_t \neq y_i]] \times \frac{exp(\beta_T)}{\sum_j^n w_j^{t}} \times \sum_j^n w_j^{t} \\ 
+&= \frac{\sum_i^n  w_i^{t}}{\sum_j^n w_j^{t+1}} \times \exp(\beta) \times \epsilon_t
+\end{align*}
 \end{titlepage}
 \end{document}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.4) (preloaded format=pdflatex 2023.9.12)  18 NOV 2023 17:19
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.4) (preloaded format=pdflatex 2023.9.12)  19 NOV 2023 17:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -370,32 +370,46 @@ Overfull \hbox (35.90024pt too wide) detected at line 83
 []
  []
 
-[2] (exercise3.aux) ) 
+[2] [3] [4]
+<q3aplot.png, id=27, 642.4pt x 481.8pt>
+File: q3aplot.png Graphic file (type png)
+<use q3aplot.png>
+Package pdftex.def Info: q3aplot.png  used on input line 224.
+(pdftex.def)             Requested size: 328.82707pt x 246.62634pt.
+ [5 <./q3aplot.png (PNG copy)>]
+<q3b.png, id=31, 642.4pt x 481.8pt>
+File: q3b.png Graphic file (type png)
+<use q3b.png>
+Package pdftex.def Info: q3b.png  used on input line 230.
+(pdftex.def)             Requested size: 328.82707pt x 246.62634pt.
+ [6 <./q3b.png (PNG copy)>] [7]
+(exercise3.aux) ) 
 Here is how much of TeX's memory you used:
- 6517 strings out of 476331
- 105210 string characters out of 5787765
- 1867660 words of memory out of 5000000
- 26898 multiletter control sequences out of 15000+600000
- 517538 words of font info for 52 fonts, out of 8000000 for 9000
+ 7031 strings out of 476331
+ 109830 string characters out of 5787765
+ 1956660 words of memory out of 5000000
+ 27407 multiletter control sequences out of 15000+600000
+ 518004 words of font info for 54 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 69i,12n,79p,387b,298s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/robde/AppData/Local/Programs/MiKTeX/fonts/type1/
-public/amsfonts/cm/cmbx12.pfb><C:/Users/robde/AppData/Local/Programs/MiKTeX/fon
-ts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/robde/AppData/Local/Programs/M
-iKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/robde/AppData/Local/P
-rograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/robde/AppData
-/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/robde
-/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Use
-rs/robde/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb
-><C:/Users/robde/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/c
-mr17.pfb><C:/Users/robde/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfo
-nts/cm/cmr6.pfb><C:/Users/robde/AppData/Local/Programs/MiKTeX/fonts/type1/publi
-c/amsfonts/cm/cmr8.pfb><C:/Users/robde/AppData/Local/Programs/MiKTeX/fonts/type
-1/public/amsfonts/cm/cmsy10.pfb><C:/Users/robde/AppData/Local/Programs/MiKTeX/f
-onts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on exercise3.pdf (2 pages, 136508 bytes).
+ 69i,12n,79p,507b,1942s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/robde/AppData/Local/Programs/MiKTeX/fonts/type1/publ
+ic/amsfonts/cm/cmbx12.pfb><C:/Users/robde/AppData/Local/Programs/MiKTeX/fonts/t
+ype1/public/amsfonts/cm/cmex10.pfb><C:/Users/robde/AppData/Local/Programs/MiKTe
+X/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/robde/AppData/Local/Progr
+ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/robde/AppData/Loc
+al/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/robde/App
+Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/r
+obde/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:
+/Users/robde/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17
+.pfb><C:/Users/robde/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/
+cm/cmr6.pfb><C:/Users/robde/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
+sfonts/cm/cmr8.pfb><C:/Users/robde/AppData/Local/Programs/MiKTeX/fonts/type1/pu
+blic/amsfonts/cm/cmsy10.pfb><C:/Users/robde/AppData/Local/Programs/MiKTeX/fonts
+/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/robde/AppData/Local/Programs/MiKT
+eX/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
+Output written on exercise3.pdf (7 pages, 215918 bytes).
 PDF statistics:
- 69 PDF objects out of 1000 (max. 8388607)
+ 93 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
 

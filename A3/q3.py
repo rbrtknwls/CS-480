@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 from numpy.random import RandomState
 
-TOL = 10 ** (-5)
+TOL = 1e-5
 
 def estep(x_i, mu, s, d):
     currentSum = 0
@@ -30,9 +30,6 @@ def train(X, maxIter, k):
 
     r = np.zeros((N, k))
     s = np.ones((k, D))
-
-    pastError = 0
-    currentError = 99999999
 
     log_likelihood = 0
 
@@ -65,10 +62,9 @@ def train(X, maxIter, k):
 
         log_likelihood = log_likelihood * -1
 
-        if np.abs(pastError - log_likelihood) <= TOL * log_likelihood:
+        if iter > 1 and pastError - log_likelihood <= TOL * log_likelihood:
             break
         print("Current Error is: ", log_likelihood)
-
         # M Step
         elementSum = np.zeros(k)
         for cluster in range(k):
@@ -98,14 +94,22 @@ gmm = pd.read_csv("gmm_dataset.csv", header=None)
 yVals = []
 xVals = []
 
-for i in range(1, 11):
-    log_likelihood, pi, mu, r, s = train(gmm, 500, i)
+last = 0
+for i in range(1, 2):
+    log_likelihood, pi, mu, r, s = train(gmm, 500, 5)
 
-    print(pi, " ", mu, " ", r, " ", s)
+    np.savetxt("q3aparamsmu.csv", np.asarray(mu), delimiter=",")
+    np.savetxt("q3aparamsr.csv", np.asarray(r), delimiter=",")
+    np.savetxt("q3aparamss.csv", np.asarray(s), delimiter=",")
+    np.savetxt("q3aparamss.csv", np.asarray(pi), delimiter=",")
+
     xVals.append(i)
     yVals.append(log_likelihood)
+    last = log_likelihood
+
 
 plt.plot(xVals, yVals)
 plt.xlabel("Number of Gaussian Distributions (k)")
 plt.ylabel("Negative Log Likelihood")
-plt.title("")
+plt.title("(k) vs Negative Log Likelihood for GMM")
+plt.show()
