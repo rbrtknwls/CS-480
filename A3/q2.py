@@ -259,3 +259,4 @@ plt.ylabel("Test Accuracy")
 plt.title("Test Accuracy vs Amount of Blur")
 plt.show()
 print(test_acc_var1)
+

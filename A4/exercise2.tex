@@ -1,0 +1,71 @@
+\documentclass{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage{blkarray}
+\usepackage{multirow}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\begin{document}
+\begin{titlepage}
+	\setlength{\parindent}{0pt}
+	\large
+
+\vspace*{-2cm}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+University of Waterloo \par
+CS 480 \par
+\vspace{0.05cm}
+r2knowle: 2023-11-28
+\vspace{0.2cm}
+
+{\huge Exercise \# 2 \par}
+\hrule
+
+\vspace{0.5cm}
+\textbf{Q2)} To begin we are given the following inequality to try and minimize:
+\[ \min_{w \in \mathbb{R}} \max_{\forall j, ||z_j|| \leq \lambda} ||(X+Z)w - y ||_2 \]
+We can expand this to get:
+\[ \min_{w \in \mathbb{R}} \max_{\forall j, ||z_j|| \leq \lambda} ||Xw - y + Zw ||_2 \]
+Now by triangle inequality it follows that:
+\[ ||Xw - y + Zw ||_2 <=  ||Xw - y ||_2 + ||Zw ||_2 \]
+Since we are first looking at the inner maximization problem, this gives us an upper bound on $Z$. Thus our equation becomes:
+\[\min_{w \in \mathbb{R}} \left( ||Xw - y ||_2 + \max_{\forall j, ||z_j|| \leq \lambda} ||Zw ||_2  \right) \]
+By the definition of the L2 norm we get that this is equivalent to:
+\[\min_{w \in \mathbb{R}} \left( ||Xw - y ||_2 + \max_{\forall j, ||z_j||_2 \leq \lambda} \sqrt{\sum_j^d{z_jw_j}} \right) \]
+
+\[\min_{w \in \mathbb{R}} ||Xw - y ||_2 +  \max_{\forall j, ||z_j||_2 \leq \lambda} \sum_j^d ||z_j||_2|w_j| \]
+From our definition of math this becomes:
+\[\min_{w \in \mathbb{R}} ||Xw - y ||_2 +  \sum_j^d \lambda|w_j| \]
+We can expand the value out to get:
+\[\min_{w \in \mathbb{R}} ||Xw - y ||_2 +  \lambda\sum_j^d |w_j| \]2
+From definition of L1 norm we can simplify to get:
+\[\min_{w \in \mathbb{R}} ||Xw - y ||_2 +  \lambda||w||_1 \]
+Thus showing how we can get (3) from (2) as required.
+\end{titlepage}
+\end{document}
