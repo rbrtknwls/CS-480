@@ -49,7 +49,40 @@ probModel.compile(
 
 (x_train, y_train), (x_test, y_test) = tf.keras.datasets.mnist.load_data()
 
+probModel1 = probModel
+probModel2 = probModel
+probModel5 = probModel
 
+updated_train_1 = []
+updated_train_2 = []
+updated_train_5 = []
+
+for i in range(0, len(x_train)):
+    norm = np.expand_dims(normalize_img(x_train[i]), axis=0)
+    norm_as_tensor = tf.convert_to_tensor(norm)
+    sparseLabel = []
+    print(i)
+    for x in range(0, 10):
+        if x == y_train[i]:
+            sparseLabel.append(1.0)
+        else:
+            sparseLabel.append(0)
+
+    sparseLabel = tf.convert_to_tensor(np.expand_dims(sparseLabel, axis=0))
+
+    delta = generate_adversarial_image(norm_as_tensor, sparseLabel, probModel)
+    signedDelta = np.sign(delta)
+    updated_train_1.append(np.add(norm[0], signedDelta*0.1))
+    updated_train_2.append(np.add(norm[0], signedDelta*0.2))
+    updated_train_5.append(np.add(norm[0], signedDelta*0.5))
+
+updated_train_1 = np.array(updated_train_1)
+updated_train_2 = np.array(updated_train_2)
+updated_train_5 = np.array(updated_train_5)
+
+probModel1.fit(updated_train_1, y_train)
+probModel2.fit(updated_train_2, y_train)
+probModel5.fit(updated_train_5, y_train)
 
 updated_test_1 = []
 updated_test_2 = []
@@ -82,13 +115,10 @@ updated_test_1 = np.array(updated_test_1)
 updated_test_2 = np.array(updated_test_2)
 updated_test_5 = np.array(updated_test_5)
 
-ev1 = np.array(probModel.evaluate(updated_test_1, y_test))
-ev2 = np.array(probModel.evaluate(updated_test_2, y_test))
-ev5 = np.array(probModel.evaluate(updated_test_5, y_test))
+print(probModel1.evaluate(updated_test_1, y_test))
+print(probModel2.evaluate(updated_test_2, y_test))
+print(probModel5.evaluate(updated_test_5, y_test))
 
-np.savetxt("ev1.csv", ev1, delimiter=",")
-np.savetxt("ev2.csv", ev2, delimiter=",")
-np.savetxt("ev5.csv", ev5, delimiter=",")
 
 '''
 for imageIndex in range(0,3):
