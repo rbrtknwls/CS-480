@@ -102,20 +102,84 @@ Non-trainable params: 5504 (21.50 KB)
 _________________________________________________________________
 \end{lstlisting}
 \newpage
-2
-\textbf{Q3b)} Below are 9 samples of test images for the 3 degrees of epsilon in adversary training. The left column denotes $\epsilon = 0.1$, the middle column denotes $\epsilon = 0.2$ and finally the last column denotes $\epsilon = 0.5$:
+\textbf{Q3b)} Below are 15 samples of test images for the 3 degrees of epsilon in FGSM adversary training. The first row denotes $\epsilon = 0.1$, the middle row denotes $\epsilon = 0.2$ and finally the last row denotes $\epsilon = 0.5$:
 \begin{center}
-\includegraphics[width=.9\linewidth]{q3b.png}
+\includegraphics[width=.8\linewidth]{q3bFGSM.png}
 \end{center}
+We can observe that as epsilon increases the amount of noise in the images increases. The background intensity will always increase, and the pixels of the actual digit tend to decrease. At epsilon 0.5 it means the perturbed parts of the digit are indistinguishable from the perturbed parts of the background. \\
+
 With our base model we receive the following test accuracies for the perturbed test set:
 \begin{center}
 \begin{tabular}{||c | c |c ||} 
  \hline
  Test Accuracy on $ \epsilon = 0.1$ & Test Accuracy on $ \epsilon = 0.2$ & Test Accuracy on $ \epsilon = 0.5$ \\ [0.5ex] 
  \hline
- $76.82\%$ & $42.63\%$ & $33.88\%$ \\ 
+ $59.95\%$ & $31.63\%$ & $15.58\%$ \\ 
  \hline
 \end{tabular}
 \end{center}
+As should be expected we see that as epsilon increase the training accuracy decreases.  \\
+
+\textbf{Q3c)} After doing adversarial training (one generated image per training image) we get the following test accuracies:
+
+\begin{center}
+\begin{tabular}{|c | c |c |} 
+ \hline
+ Test Accuracy on $ \epsilon = 0.1$ & Test Accuracy on $ \epsilon = 0.2$ & Test Accuracy on $ \epsilon = 0.5$ \\ [0.5ex] 
+ \hline
+ $97.04\%$ & $91.18\%$ & $80.32\%$ \\ 
+ \hline
+\end{tabular}
+\end{center}
+After doing adversarial training we can see that our model accuracies increase by a very large extent. We also notice that expect of epsilon 0.2, that as epsilon increase our model accuracy decreases proportionately. 
+\newpage
+\textbf{Q3d)} Below are 15 samples of test images for the 3 degrees of epsilon in PGD adversary training. The first row denotes $\epsilon = 0.1$, the middle row denotes $\epsilon = 0.2$ and finally the last row denotes $\epsilon = 0.5$: 
+\begin{center}
+\includegraphics[width=.8\linewidth]{q3bPGD.png}
+\end{center}
+Below are the three tables comparing the 3 different trained models versus the three different test sets:
+\begin{center}
+\begin{tabular}{| c || c | c | c |} 
+ \hline
+Model Type & Unperturbed Test Set  & FGSM Test Set & PGD Test set\\ [0.5ex] 
+ \hline
+ Untrained & $98.37\%$ & $59.94\%$ & $77.81\%$ \\ 
+ \hline
+ FGSM & $74.12\%$ & $97.04\%$ & $86.07\%$ \\ 
+ \hline
+ PGD & $73.10\%$ & $99.07\%$ & $98.07\%$ \\ 
+ \hline
+\end{tabular}
+\captionof{table}{Test Accuracies for $\epsilon = 0.1$}
+\end{center}
+\begin{center}
+\begin{tabular}{| c || c | c | c |} 
+ \hline
+Model Type & Unperturbed Test Set  & FGSM Test Set & PGD Test set\\ [0.5ex] 
+ \hline
+ Untrained & $98.37\%$ & $31.63\%$ & $33.65\%$ \\ 
+ \hline
+ FGSM & $74.12\%$ & $99.18\%$ & $89.23\%$ \\ 
+ \hline
+ PGD & $73.10\%$ & $97.54\%$ & $96.68\%$ \\ 
+ \hline
+\end{tabular}
+\captionof{table}{Test Accuracies for $\epsilon = 0.2$}
+\end{center}
+\begin{center}
+\begin{tabular}{| c || c | c | c |} 
+ \hline
+Model Type & Unperturbed Test Set  & FGSM Test Set & PGD Test set\\ [0.5ex] 
+ \hline
+ Untrained & $98.37\%$ & $15.58\%$ & $9.36\%$ \\ 
+ \hline
+ FGSM & $74.12\%$ & $80.32\%$ & $61.23\%$ \\ 
+ \hline
+ PGD & $73.10\%$ & $62.23\%$ & $87.38\%$ \\ 
+ \hline
+\end{tabular}
+\captionof{table}{Test Accuracies for $\epsilon = 0.5$}
+\end{center}
+Note that both FGSM and PGD were trained with an $epsilon = 0.2$. From this we can identify some trends. The first is that as epsilon increases, each model tends to do worse on tests that they were note trained on. The untrained model's accuracy falls off far faster on adversary tests and then adversarial trained models do on normal data. We also notice that the model trained on PGD data tends to be more robust and has higher accuracy on FGSM data then the FGSM model has on PGD data. Lastly we notice that each model has around $~98\%$ accuracy on the data it was trained on.
 \end{titlepage}
 \end{document}

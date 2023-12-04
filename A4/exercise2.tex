@@ -52,21 +52,40 @@ r2knowle: 2023-11-28
 \[ \min_{w \in \mathbb{R}} \max_{\forall j, ||z_j|| \leq \lambda} ||(X+Z)w - y ||_2 \]
 We can expand this to get:
 \[ \min_{w \in \mathbb{R}} \max_{\forall j, ||z_j|| \leq \lambda} ||Xw - y + Zw ||_2 \]
-Now by triangle inequality it follows that:
-\[ ||Xw - y + Zw ||_2 <=  ||Xw - y ||_2 + ||Zw ||_2 \]
-Since we are first looking at the inner maximization problem, this gives us an upper bound on $Z$. Thus our equation becomes:
-\[\min_{w \in \mathbb{R}} \left( ||Xw - y ||_2 + \max_{\forall j, ||z_j|| \leq \lambda} ||Zw ||_2  \right) \]
-By the definition of the L2 norm we get that this is equivalent to:
-\[\min_{w \in \mathbb{R}} \left( ||Xw - y ||_2 + \max_{\forall j, ||z_j||_2 \leq \lambda} \sqrt{\sum_j^d{z_jw_j}} \right) \]
+Going forward we will try to prove that this results in (3) by using the squeeze theorem. We will first prove that the upper bound results in (3). By the triangle identity it follows that:
 
-\[\min_{w \in \mathbb{R}} ||Xw - y ||_2 +  \max_{\forall j, ||z_j||_2 \leq \lambda} \sum_j^d ||z_j||_2|w_j| \]
-From our definition of math this becomes:
-\[\min_{w \in \mathbb{R}} ||Xw - y ||_2 +  \sum_j^d \lambda|w_j| \]
-We can expand the value out to get:
-\[\min_{w \in \mathbb{R}} ||Xw - y ||_2 +  \lambda\sum_j^d |w_j| \]2
-From definition of L1 norm we can simplify to get:
-\[\min_{w \in \mathbb{R}} ||Xw - y ||_2 +  \lambda||w||_1 \]
-Thus showing how we can get (3) from (2) as required.
+Now by triangle inequality it follows that:
+\[ \min_{w \in \mathbb{R}} \max_{\forall j, ||z_j|| \leq \lambda}||Xw - y + Zw ||_2 \leq  \min_{w \in \mathbb{R}} \max_{\forall j, ||z_j|| \leq \lambda} \left(||Xw - y ||_2 + ||Zw ||_2 \right) \]
+This can further be reduced to:
+\[ \leq  \min_{w \in \mathbb{R}} \left(||Xw - y ||_2 + \max_{\forall j, ||z_j|| \leq \lambda}||\sum_j^d(z_jw_j) ||_2 \right) \]
+from our inner maximization we can further get that:
+\[ \leq  \min_{w \in \mathbb{R}} \left(||Xw - y ||_2 + ||\sum_j^d(\lambda w_j) ||_2 \right) \]
+\[  =  \min_{w \in \mathbb{R}} \left(||Xw - y ||_2 + ||\lambda \sum_j^d(w_j) ||_2 \right) \]
+From the homogeneous nature of the $l_2$ norm we know that this is equivalent to:
+\[ \leq  \min_{w \in \mathbb{R}} \left(||Xw - y ||_2 + |\lambda|||\sum_j^d(w_j) ||_2 \right) \]
+Since $\lambda$ is a positive value, it follows that $|\lambda| = \lambda$, moreover for any $w \in R^d$ it follows that $||w||_2 \leq ||w||_1$. This is because $||w||_2 = \max_{||u||_2 \leq 1}w^Tu$ and $||w||_1 = |w| > w^Tu$ for any u thats less then 1. Therefore it follows that:
+\[ \leq  \min_{w \in \mathbb{R}} \left(||Xw - y ||_2 + \lambda||\sum_j^d(w_j) ||_1 \right) \]
+\[ =  \min_{w \in \mathbb{R}} \left(||Xw - y ||_2 + \lambda||w||_1 \right) \]
+Thus showing how we can get (3) from (2) as required in the upper bound case. On the next page we are going to be looking at the lower bound case.
 \newpage
+To prove the lower bound, we will start with:
+\[ \min_{w \in \mathbb{R}} \max_{\forall j, ||z_j|| \leq \lambda} ||Xw - y + Zw ||_2 \]
+We will define the following variable that has the properties:
+\[ h = \begin{cases} 
+      \frac{Xw-y}{||Xw-y||_2} & Xw \neq y \\
+      1 & Xw = y
+   \end{cases} \]
+We then make the observation that:
+\[ \forall j, ||\lambda||_2 \geq ||\lambda h||_2 \]
+Therefore if we will set $z_j$ to be the following:
+\[ \tilde{z_j} = \lambda h \]
+This has the property that it will always be less then or equal to our maximal quantity, thus we can rewrite this as:
+\[ \min_{w \in \mathbb{R}} \max_{\forall j, ||z_j|| \leq \lambda} ||(Xw - y + Zw ||_2 \geq \min_{w \in \mathbb{R}} ||Xw - y + \sum_j^d \tilde{z_j}w_j ||_2 \]
+Which from this we can get:
+\[ = \min_{w \in \mathbb{R}} ||Xw - y + \sum_j^d  \lambda h w_j ||_2 \]
+\[ = \min_{w \in \mathbb{R}} ||Xw - y + h\sum_j^d  \lambda |w_j| ||_2 \]
+\[ = \min_{w \in \mathbb{R}} ||Xw - y ||_2 + \sum_j^d  \lambda |w_j| \]
+\[ = \min_{w \in \mathbb{R}} ||Xw - y ||_2 +  \lambda |w| \]
+Thus demonstrating how we can achieve (3) in the lower bound case. Thus because we have shown the lower bound and upper bound of (2) converge to (3) it must be the case that (2) is equivalent to (3).
 \end{titlepage}
 \end{document}

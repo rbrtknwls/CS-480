@@ -108,7 +108,7 @@ PGD_1 = []
 PGD_2 = []
 PGD_5 = []
 
-for i in range(0, len(y_test)):
+for i in range(0, len(x_test)):
     norm = normalize_img(x_test[i])
     sparseLabel = []
     print(i)
@@ -128,9 +128,9 @@ for i in range(0, len(y_test)):
 
     # FGSM
 
-    image_1 = np.add(norm, signedDelta * 0.1)
-    image_2 = np.add(norm, signedDelta * 0.2)
-    image_3 = np.add(norm, signedDelta * 0.5)
+    image_1 = np.clip(np.add(norm, signedDelta * 0.1), 0, 1)
+    image_2 = np.clip(np.add(norm, signedDelta * 0.2), 0, 1)
+    image_3 = np.clip(np.add(norm, signedDelta * 0.5), 0, 1)
 
     FGSM_1.append(image_1)
     FGSM_2.append(image_2)
@@ -138,13 +138,21 @@ for i in range(0, len(y_test)):
 
     # PGD
 
+    image_1 = np.add(norm, np.clip(signedDelta*HYPERPARAM, -0.1, 0.1))
+    image_2 = np.add(norm, np.clip(signedDelta*HYPERPARAM, -0.2, 0.2))
+    image_3 = np.add(norm, np.clip(signedDelta*HYPERPARAM, -0.5, 0.5))
+
     delta_1 = np.sign(generate_adversarial_image(image_1, sparseLabel, probModel))
     delta_2 = np.sign(generate_adversarial_image(image_2, sparseLabel, probModel))
     delta_3 = np.sign(generate_adversarial_image(image_3, sparseLabel, probModel))
 
-    PGD_1.append(np.add(norm, np.clip(np.add(signedDelta * HYPERPARAM, HYPERPARAM * delta_1), -0.1, 0.1)))
-    PGD_2.append(np.add(norm, np.clip(np.add(signedDelta * HYPERPARAM, HYPERPARAM * delta_2), -0.2, 0.2)))
-    PGD_5.append(np.add(norm, np.clip(np.add(signedDelta * HYPERPARAM, HYPERPARAM * delta_3), -0.5, 0.5)))
+    image_1 = np.add(norm, np.clip(np.add(signedDelta * HYPERPARAM, HYPERPARAM * delta_1), -0.1, 0.1))
+    image_2 = np.add(norm, np.clip(np.add(signedDelta * HYPERPARAM, HYPERPARAM * delta_2), -0.2, 0.2))
+    image_3 = np.add(norm, np.clip(np.add(signedDelta * HYPERPARAM, HYPERPARAM * delta_3), -0.5, 0.5))
+
+    PGD_1.append(np.clip(image_1, 0, 1))
+    PGD_2.append(np.clip(image_2, 0, 1))
+    PGD_5.append(np.clip(image_3, 0, 1))
 
 Normal = np.array(Normal)
 
@@ -155,6 +163,82 @@ FGSM_5 = np.array(FGSM_5)
 PGD_1 = np.array(PGD_1)
 PGD_2 = np.array(PGD_2)
 PGD_5 = np.array(PGD_5)
+
+for epsilonChoice in range(0, 3):
+    for imageIndex in range(0,5):
+        plt.subplot(3, 5, epsilonChoice*5+imageIndex+1)
+        if epsilonChoice == 0:
+            plt.imshow(FGSM_1[imageIndex], cmap='gray')
+            predicted = np.argmax(probModel.predict(np.expand_dims(FGSM_1[imageIndex], axis=0)))
+
+            if predicted != y_test[imageIndex]:
+                plt.title("Predicted:" + str(predicted), color='red')
+            else:
+                plt.title("Predicted:" + str(predicted), color='green')
+
+        elif epsilonChoice == 1:
+            plt.imshow(FGSM_2[imageIndex], cmap='gray')
+            predicted = np.argmax(probModel.predict(np.expand_dims(FGSM_2[imageIndex], axis=0)))
+
+            if predicted != y_test[imageIndex]:
+                plt.title("Predicted:" + str(predicted), color='red')
+            else:
+                plt.title("Predicted:" + str(predicted), color='green')
+
+        else:
+            plt.imshow(FGSM_5[imageIndex], cmap='gray')
+            predicted = np.argmax(probModel.predict(np.expand_dims(FGSM_5[imageIndex], axis=0)))
+
+            if predicted != y_test[imageIndex]:
+                plt.title("Predicted:" + str(predicted), color='red')
+            else:
+                plt.title("Predicted:" + str(predicted), color='green')
+
+plt.tight_layout()
+params = {"text.color": "black"}
+plt.rcParams.update(params)
+plt.suptitle("FGSM Adversarial Generated Images (0.1, 0.2, 0.5)")
+plt.subplots_adjust(top=0.88)
+plt.show()
+
+for epsilonChoice in range(0, 3):
+    for imageIndex in range(0,5):
+        plt.subplot(3, 5, epsilonChoice*5+imageIndex+1)
+        if epsilonChoice == 0:
+            plt.imshow(PGD_1[imageIndex], cmap='gray')
+
+            predicted = np.argmax(probModel.predict(np.expand_dims(PGD_1[imageIndex], axis=0)))
+
+            if predicted != y_test[imageIndex]:
+                plt.title("Predicted:" + str(predicted), color='red')
+            else:
+                plt.title("Predicted:" + str(predicted), color='green')
+
+        elif epsilonChoice == 1:
+            plt.imshow(PGD_2[imageIndex], cmap='gray')
+
+            predicted = np.argmax(probModel.predict(np.expand_dims(PGD_2[imageIndex], axis=0)))
+
+            if predicted != y_test[imageIndex]:
+                plt.title("Predicted:" + str(predicted), color='red')
+            else:
+                plt.title("Predicted:" + str(predicted), color='green')
+
+        else:
+            plt.imshow(PGD_5[imageIndex], cmap='gray')
+            predicted = np.argmax(probModel.predict(np.expand_dims(PGD_5[imageIndex], axis=0)))
+
+            if predicted != y_test[imageIndex]:
+                plt.title("Predicted:" + str(predicted), color='red')
+            else:
+                plt.title("Predicted:" + str(predicted), color='green')
+
+plt.tight_layout()
+params = {"text.color": "black"}
+plt.rcParams.update(params)
+plt.suptitle("PGD Adversarial Generated Images (0.1, 0.2, 0.5)")
+plt.subplots_adjust(top=0.88)
+plt.show()
 
 
 # ======================== Train the Models ========================
@@ -203,7 +287,7 @@ PGD_1_Train = []
 PGD_2_Train = []
 PGD_5_Train = []
 
-for i in range(0, len(y_train)):
+for i in range(0, len(x_train)):
     norm = normalize_img(x_train[i])
     sparseLabel = []
     print(i)
@@ -220,9 +304,9 @@ for i in range(0, len(y_train)):
 
     # FGSM
 
-    image_1 = np.add(norm, signedDelta * 0.1)
-    image_2 = np.add(norm, signedDelta * 0.2)
-    image_3 = np.add(norm, signedDelta * 0.5)
+    image_1 = np.clip(np.add(norm, signedDelta * 0.1), 0, 1)
+    image_2 = np.clip(np.add(norm, signedDelta * 0.2), 0, 1)
+    image_3 = np.clip(np.add(norm, signedDelta * 0.5), 0, 1)
 
     FGSM_1_Train.append(image_1)
     FGSM_2_Train.append(image_2)
@@ -230,13 +314,21 @@ for i in range(0, len(y_train)):
 
     # PGD
 
+    image_1 = np.add(norm, np.clip(signedDelta*HYPERPARAM, -0.1, 0.1))
+    image_2 = np.add(norm, np.clip(signedDelta*HYPERPARAM, -0.1, 0.1))
+    image_3 = np.add(norm, np.clip(signedDelta*HYPERPARAM, -0.1, 0.1))
+
     delta_1 = np.sign(generate_adversarial_image(image_1, sparseLabel, probModel))
     delta_2 = np.sign(generate_adversarial_image(image_2, sparseLabel, probModel))
     delta_3 = np.sign(generate_adversarial_image(image_3, sparseLabel, probModel))
 
-    PGD_1_Train.append(np.add(norm, np.clip(np.add(signedDelta * HYPERPARAM, HYPERPARAM * delta_1), -0.1, 0.1)))
-    PGD_2_Train.append(np.add(norm, np.clip(np.add(signedDelta * HYPERPARAM, HYPERPARAM * delta_2), -0.2, 0.2)))
-    PGD_5_Train.append(np.add(norm, np.clip(np.add(signedDelta * HYPERPARAM, HYPERPARAM * delta_3), -0.5, 0.5)))
+    image_1 = np.add(norm, np.clip(np.add(signedDelta * HYPERPARAM, HYPERPARAM * delta_1), -0.1, 0.1))
+    image_2 = np.add(norm, np.clip(np.add(signedDelta * HYPERPARAM, HYPERPARAM * delta_2), -0.2, 0.2))
+    image_3 = np.add(norm, np.clip(np.add(signedDelta * HYPERPARAM, HYPERPARAM * delta_3), -0.5, 0.5))
+
+    PGD_1_Train.append(np.clip(image_1, 0, 1))
+    PGD_2_Train.append(np.clip(image_2, 0, 1))
+    PGD_5_Train.append(np.clip(image_3, 0, 1))
 
 
 
@@ -265,13 +357,13 @@ probModel.evaluate(Normal, y_test)
 probModel.evaluate(FGSM_1, y_test)
 probModel.evaluate(PGD_1, y_test)
 
-probModel1FGSM.evaluate(Normal, y_test)
-probModel1FGSM.evaluate(FGSM_1, y_test)
-probModel1FGSM.evaluate(PGD_1, y_test)
+probModel2FGSM.evaluate(Normal, y_test)
+probModel2FGSM.evaluate(FGSM_1, y_test)
+probModel2FGSM.evaluate(PGD_1, y_test)
 
-probModel1PGD.evaluate(Normal, y_test)
-probModel1PGD.evaluate(FGSM_1, y_test)
-probModel1PGD.evaluate(PGD_1, y_test)
+probModel2PGD.evaluate(Normal, y_test)
+probModel2PGD.evaluate(FGSM_1, y_test)
+probModel2PGD.evaluate(PGD_1, y_test)
 
 print("EPSI 2")
 
@@ -293,30 +385,11 @@ probModel.evaluate(Normal, y_test)
 probModel.evaluate(FGSM_5, y_test)
 probModel.evaluate(PGD_5, y_test)
 
-probModel5FGSM.evaluate(Normal, y_test)
-probModel5FGSM.evaluate(FGSM_5, y_test)
-probModel5FGSM.evaluate(PGD_5, y_test)
+probModel2FGSM.evaluate(Normal, y_test)
+probModel2FGSM.evaluate(FGSM_5, y_test)
+probModel2FGSM.evaluate(PGD_5, y_test)
 
-probModel5PGD.evaluate(Normal, y_test)
-probModel5PGD.evaluate(FGSM_5, y_test)
-probModel5PGD.evaluate(PGD_5, y_test)
-
-
-for imageIndex in range(0,3):
-    for epsilonChoice in range(0, 3):
-        plt.subplot(3, 3, imageIndex*3+epsilonChoice+1)
-        if epsilonChoice == 0:
-            plt.imshow(updated_test_1[imageIndex])
-            plt.title("Epsilon 0.1 for " + str(y_test[imageIndex]))
-        elif epsilonChoice == 1:
-            plt.imshow(updated_test_2[imageIndex])
-            plt.title("Epsilon 0.2 for " + str(y_test[imageIndex]))
-        else:
-            plt.imshow(updated_test_5[imageIndex])
-            plt.title("Epsilon 0.5 for " + str(y_test[imageIndex]))
-
-plt.tight_layout()
-plt.suptitle("Adversarial Generated Images (0.1, 0.2, 0.5)")
-plt.subplots_adjust(top=0.88)
-plt.show()
+probModel2PGD.evaluate(Normal, y_test)
+probModel2PGD.evaluate(FGSM_5, y_test)
+probModel2PGD.evaluate(PGD_5, y_test)
 

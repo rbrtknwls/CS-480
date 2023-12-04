@@ -130,7 +130,7 @@ model.compile(
     metrics=[tf.keras.metrics.SparseCategoricalAccuracy()],
 )
 print(model.summary())
-'''
+
 trainingAccuracy = []
 trainingLoss = []
 
@@ -181,7 +181,6 @@ plt.ylabel('Loss')
 plt.xlabel('Epoch')
 plt.grid()
 plt.show()
-'''
 
 trainedModel = tf.keras.models.load_model('q3TrainedExtra4.keras')
 
